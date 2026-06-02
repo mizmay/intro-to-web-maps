@@ -20,14 +20,13 @@ intro-to-web-maps/
     │   └── workshop.json         # Workshop metadata and step list
     ├── _includes/
     │   └── base.njk              # Base layout template (sidebar nav, footer)
-    ├── welcome.md                # Workshop overview page
-    ├── prerequisites.md          # "Before You Arrive" setup page
+    ├── index.md                  # Setup instructions and workshop overview (rendered as /workshop/)
     ├── step-01.md                # Step 1: Verify Setup
-    ├── step-02.md                # Step 2: Extract Trail Data with Overpass Ultra
-    ├── step-03.md                # Step 3: Render the Map and Add Your Trail Layer
-    ├── step-04.md                # Step 4: Publish to GitHub Pages
-    ├── step-05.md                # Step 5: Add Terrain (Hillshade)
-    ├── step-06.md                # Step 6 (bonus): Add Interactivity
+    ├── step-02.md                # Step 2: Extract Trail Data with Overpass Ultra (pending)
+    ├── step-03.md                # Step 3: Render the Map and Add Your Trail Layer (pending)
+    ├── step-04.md                # Step 4: Publish to GitHub Pages (pending)
+    ├── step-05.md                # Step 5: Add Terrain (Hillshade) (pending)
+    ├── step-06.md                # Step 6 (bonus): Add Interactivity (pending)
     └── workshop.css              # Styles for instruction pages
 ```
 
