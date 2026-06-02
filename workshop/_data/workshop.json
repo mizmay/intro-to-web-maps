@@ -1,0 +1,48 @@
+{
+  "title": "From OSM Data to a Shareable Map URL",
+  "subtitle": "Building a trail map of the Capital City State Trail, Madison WI",
+  "instructor": {
+    "name": "Stephanie May",
+    "url": "https://2026.stateofthemap.us/"
+  },
+  "prereqs": {
+    "file": "prerequisites.html",
+    "title": "Before You Arrive"
+  },
+  "steps": [
+    {
+      "number": 1,
+      "file": "step-01.html",
+      "title": "Verify Setup"
+    },
+    {
+      "number": 2,
+      "file": "step-02.html",
+      "title": "Extract Trail Data with Overpass Ultra"
+    },
+    {
+      "number": 3,
+      "file": "step-03.html",
+      "title": "Render the Map and Add Your Trail Layer"
+    },
+    {
+      "number": 4,
+      "file": "step-04.html",
+      "title": "Publish to GitHub Pages"
+    },
+    {
+      "number": 5,
+      "file": "step-05.html",
+      "title": "Add Terrain (Hillshade)"
+    }
+  ],
+  "bonusSteps": [
+    {
+      "number": 6,
+      "file": "step-06.html",
+      "title": "Add Interactivity"
+    }
+  ],
+  "totalSteps": 5,
+  "totalBonusSteps": 1
+}

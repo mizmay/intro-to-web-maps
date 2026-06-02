@@ -1,0 +1,23 @@
+{
+  "name": "osm-trail-map-workshop",
+  "version": "1.0.0",
+  "description": "SotM US 2026 Workshop: From OSM Data to a Shareable Map URL",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "watch": "npx @11ty/eleventy --watch"
+  },
+  "keywords": [
+    "workshop",
+    "web-maps",
+    "maplibre",
+    "openstreetmap",
+    "pmtiles"
+  ],
+  "author": "Stephanie May",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@sardine/eleventy-plugin-external-links": "^1.4.0"
+  }
+}
