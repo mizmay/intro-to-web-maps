@@ -1,0 +1,20 @@
+:1234 {
+	root * .
+	file_server
+
+	# CORS headers — required for Maputnik (Step 5) to load style.json and
+	# GeoJSON sources from your local server
+	header {
+		Access-Control-Allow-Origin *
+		Access-Control-Allow-Methods "GET, OPTIONS"
+		Access-Control-Allow-Headers "Content-Type"
+	}
+
+	# Enable byte-range requests — required for PMTiles (terrain in Step 5)
+	@pmtiles {
+		path *.pmtiles
+	}
+	header @pmtiles Accept-Ranges bytes
+
+	encode gzip
+}
