@@ -20,20 +20,18 @@ Keep this terminal open for the rest of the workshop. Caddy will serve your map 
 
 Open [http://127.0.0.1:1234/](http://127.0.0.1:1234/) in your browser.
 
-You should see:
-- The OSM Bright basemap centered on Madison, WI
-- The Capital City State Trail drawn in green over the basemap
+You should see the OSM Bright basemap centered on Madison, WI — roads, parks, water, and labels, but no trail yet. That's expected; we'll add it in Step 3.
 
-If anything isn't loading, raise your hand — we'll sort it out now before moving on.
+If the basemap isn't loading, raise your hand; we'll sort it out now before moving on.
 
 ## What You're Looking At
 
-**`index.html`** initializes a MapLibre GL JS map and adds the trail as a GeoJSON layer on top of the basemap.
+**`index.html`** initializes a MapLibre GL JS map using the basemap stylesheet. You'll add the trail layer to this file in Step 3.
 
-**`style.json`** is the OSM Bright stylesheet — it defines how the basemap (roads, parks, water, labels) is drawn. It points to the OSM US Tileservice for vector tiles and uses open glyph and sprite resources.
+**`style.json`** is the OSM Bright stylesheet; it defines how the basemap is drawn. It points to the OSM US Tileservice for vector tiles and uses open glyph and sprite resources.
 
-**`sources/capital_city_trail.geojson`** is the trail geometry extracted from OpenStreetMap. You'll learn how this was created — and how to create your own — in Step 2.
+**`sources/`** is where you'll save your trail GeoJSON in Step 2.
 
 ---
 
-**[Previous: Before You Arrive](../prerequisites/)** | **[Next: Step 2 — Extract Trail Data](../step-02/)**
+**[Previous: Setup Instructions](../)** | **[Next: Step 2: Extract Trail Data](../step-02/)**

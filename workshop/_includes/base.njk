@@ -18,18 +18,9 @@
           <span class="sidebar-logo-text">SotM US 2026</span>
         </div>
         <div class="sidebar-header">
-          <h2><a href="../welcome/" class="sidebar-header-link">From OSM Data to a Shareable Map URL</a></h2>
+          <h2><a href="../" class="sidebar-header-link">From OSM Data to a Shareable Map URL</a></h2>
         </div>
         <nav class="sidebar-nav">
-          {% set prereqPath = workshop.prereqs.file | replace('.html', '') %}
-          {% if step == 'prereqs' %}
-            <a href="./" class="sidebar-item active">
-          {% else %}
-            <a href="../{{ prereqPath }}/" class="sidebar-item">
-          {% endif %}
-            <span class="step-number">Before You Arrive</span>
-            <span class="step-title">{{ workshop.prereqs.title }}</span>
-          </a>
           {% for stepItem in workshop.steps %}
             {% set stepPath = stepItem.file | replace('.html', '') %}
             {% if step == stepItem.number %}

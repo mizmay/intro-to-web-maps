@@ -18,16 +18,9 @@
           <span class="sidebar-logo-text">SotM US 2026</span>
         </div>
         <div class="sidebar-header">
-          <h2><a href="../welcome/" class="sidebar-header-link">From OSM Data to a Shareable Map URL</a></h2>
+          <h2><a href="../" class="sidebar-header-link">From OSM Data to a Shareable Map URL</a></h2>
         </div>
         <nav class="sidebar-nav">
-          
-          
-            <a href="../prerequisites/" class="sidebar-item">
-          
-            <span class="step-number">Before You Arrive</span>
-            <span class="step-title">Before You Arrive</span>
-          </a>
           
             
             
@@ -101,21 +94,17 @@
 <p>Keep this terminal open for the rest of the workshop. Caddy will serve your map files at <code>http://127.0.0.1:1234/</code>.</p>
 <h2>Open the Map</h2>
 <p>Open <a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/">http://127.0.0.1:1234/</a> in your browser.</p>
-<p>You should see:</p>
-<ul>
-<li>The OSM Bright basemap centered on Madison, WI</li>
-<li>The Capital City State Trail drawn in green over the basemap</li>
-</ul>
-<p>If anything isn't loading, raise your hand — we'll sort it out now before moving on.</p>
+<p>You should see the OSM Bright basemap centered on Madison, WI — roads, parks, water, and labels, but no trail yet. That's expected; we'll add it in Step 3.</p>
+<p>If the basemap isn't loading, raise your hand; we'll sort it out now before moving on.</p>
 <h2>What You're Looking At</h2>
-<p><strong><code>index.html</code></strong> initializes a MapLibre GL JS map and adds the trail as a GeoJSON layer on top of the basemap.</p>
-<p><strong><code>style.json</code></strong> is the OSM Bright stylesheet — it defines how the basemap (roads, parks, water, labels) is drawn. It points to the OSM US Tileservice for vector tiles and uses open glyph and sprite resources.</p>
-<p><strong><code>sources/capital_city_trail.geojson</code></strong> is the trail geometry extracted from OpenStreetMap. You'll learn how this was created — and how to create your own — in Step 2.</p>
+<p><strong><code>index.html</code></strong> initializes a MapLibre GL JS map using the basemap stylesheet. You'll add the trail layer to this file in Step 3.</p>
+<p><strong><code>style.json</code></strong> is the OSM Bright stylesheet; it defines how the basemap is drawn. It points to the OSM US Tileservice for vector tiles and uses open glyph and sprite resources.</p>
+<p><strong><code>sources/</code></strong> is where you'll save your trail GeoJSON in Step 2.</p>
 
         
 
         <hr>
-<p><strong><a href="../prerequisites/">Previous: Before You Arrive</a></strong> | <strong><a href="../step-02/">Next: Step 2 — Extract Trail Data</a></strong></p>
+<p><strong><a href="../">Previous: Setup Instructions</a></strong> | <strong><a href="../step-02/">Next: Step 2: Extract Trail Data</a></strong></p>
       </article>
     </main>
   </div>

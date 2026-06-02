@@ -1,13 +1,9 @@
 {
-  "title": "From OSM Data to a Shareable Map URL",
+  "title": "Introduction to Web Maps",
   "subtitle": "Building a trail map of the Capital City State Trail, Madison WI",
   "instructor": {
     "name": "Stephanie May",
     "url": "https://2026.stateofthemap.us/"
-  },
-  "prereqs": {
-    "file": "prerequisites.html",
-    "title": "Before You Arrive"
   },
   "steps": [
     {

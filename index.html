@@ -39,27 +39,6 @@
     });
 
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
-
-    map.on('load', function () {
-      // Insert trail below all label/symbol layers so text stays readable
-      const firstSymbolLayer = map.getStyle().layers.find(l => l.type === 'symbol')?.id;
-
-      map.addSource('capital-city-trail', {
-        type: 'geojson',
-        data: 'sources/capital_city_trail.geojson'
-      });
-
-      map.addLayer({
-        id: 'trail-line',
-        type: 'line',
-        source: 'capital-city-trail',
-        paint: {
-          'line-color': TRAIL_COLOR,
-          'line-width': TRAIL_WIDTH,
-          'line-dasharray': TRAIL_DASH
-        }
-      }, firstSymbolLayer);
-    });
   </script>
 </body>
 </html>
