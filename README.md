@@ -11,7 +11,7 @@ This is the `workshop-instructions` branch. The instruction pages are built usin
 ## Directory Structure
 
 ```
-osm-trail-map/
+intro-to-web-maps/
 ├── README.md                     # This file
 ├── .eleventy.js                  # Eleventy build configuration
 ├── package.json                  # Build dependencies

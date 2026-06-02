@@ -7,3 +7,6 @@ sources/*.pmtiles
 
 # Node (if you ever run a local build tool)
 node_modules/
+
+# LLMs
+.claude/

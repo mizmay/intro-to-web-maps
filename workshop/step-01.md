@@ -8,7 +8,7 @@ Before we dive in, let's confirm everyone's environment is working.
 
 ## Start Your Local Server
 
-From the `osm-trail-map` directory, run:
+From the `intro-to-web-maps` directory, run:
 
 ```bash
 caddy run

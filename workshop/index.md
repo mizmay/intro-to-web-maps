@@ -22,11 +22,11 @@ If you run into trouble during setup, bring your laptop to the session early and
 Regardless of which path you choose below, you need to **fork the workshop repository to your own GitHub account**. This gives you a personal copy to edit and publish.
 
 1. Create a [GitHub account](https://github.com/join) if you don't already have one
-2. Go to [github.com/mizmay/osm-trail-map](https://github.com/mizmay/osm-trail-map)
+2. Go to [github.com/mizmay/intro-to-web-maps](https://github.com/mizmay/intro-to-web-maps)
 3. Click **Fork** (top right) → **Create fork**
-4. Your copy will live at `github.com/YOUR-USERNAME/osm-trail-map`
+4. Your copy will live at `github.com/YOUR-USERNAME/intro-to-web-maps`
 
-At the end of the workshop, you'll enable GitHub Pages on your fork and share a live URL: `YOUR-USERNAME.github.io/osm-trail-map/`
+At the end of the workshop, you'll enable GitHub Pages on your fork and share a live URL: `YOUR-USERNAME.github.io/intro-to-web-maps/`
 
 ### Choose Your Path
 
@@ -138,14 +138,14 @@ caddy version
 1. Open VS Code. You should see "Clone Git repository..." on the welcome screen. Click that, or if you don't see it:
     - Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows/Linux) to open the Command Palette
     - Type **Git: Clone** and press Enter
-2. Paste your fork URL: `https://github.com/YOUR-USERNAME/osm-trail-map`
+2. Paste your fork URL: `https://github.com/YOUR-USERNAME/intro-to-web-maps`
 3. Choose a folder on your machine, then click **Open Repository** when prompted
 
 **Using a terminal:**
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/osm-trail-map
-cd osm-trail-map
+git clone https://github.com/YOUR-USERNAME/intro-to-web-maps
+cd intro-to-web-maps
 code .
 ```
 
@@ -177,7 +177,7 @@ git --version     # git version 2.x.x or higher
 caddy version     # v2.x.x
 ```
 
-3. Start the local server from the `osm-trail-map` folder:
+3. Start the local server from the `intro-to-web-maps` folder:
 
 ```bash
 caddy run
@@ -204,13 +204,13 @@ Once you've completed setup, you're ready for the session. Here's what we'll bui
 **SotM US 2026** · Thursday, June 11 · 3:45–5:00 pm CDT  
 University Room A/B/C
 
-Presented by [Stephanie May](https://github.com/mizmay). Source: [github.com/mizmay/osm-trail-map](https://github.com/mizmay/osm-trail-map).
+Presented by [Stephanie May](https://github.com/mizmay). Source: [github.com/mizmay/intro-to-web-maps](https://github.com/mizmay/intro-to-web-maps).
 
 ---
 
 ## Questions?
 
-If you have trouble with setup, open an issue on [github.com/mizmay/osm-trail-map](https://github.com/mizmay/osm-trail-map) or bring your laptop to the session early.
+If you have trouble with setup, open an issue on [github.com/mizmay/intro-to-web-maps](https://github.com/mizmay/intro-to-web-maps) or bring your laptop to the session early.
 
 ---
 
