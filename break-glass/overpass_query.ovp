@@ -1,0 +1,14 @@
+/*
+  Overpass QL query — Capital City State Trail, Madison WI
+  OSM relation: https://www.openstreetmap.org/relation/2997493
+
+  Use this in Overpass Turbo (https://overpass-turbo.eu) if Overpass Ultra is unavailable.
+
+  Paste this query into the editor, click Run, then export as GeoJSON.
+  Rename the downloaded file to capital_city_trail.geojson and place it in sources/.
+*/
+
+[out:json][timeout:60];
+relation(2997493)->.trail;
+way(r.trail);
+out geom;
