@@ -1,5 +1,19 @@
 /* Workshop Instruction Pages Styles - SotM US 2026 */
 
+:root {
+  --primary: #009016;
+  --primary-dark: #006b0f;
+  --primary-light: #33cd4b;
+  --accent-red: #cc2b48;
+  --bg-tint: #f3fff5;
+  --dark: #333;
+  --border: #dedede;
+  --text: #333;
+  --text-muted: #666;
+  --sans: 'Source Sans 3', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  --mono: 'Source Code Pro', monospace;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +21,10 @@
 }
 
 body {
-  font-family: 'Overpass', system-ui, sans-serif;
+  font-family: var(--sans);
   line-height: 1.6;
-  color: #333;
-  background-color: #f8f9fa;
+  color: var(--text);
+  background-color: var(--bg-tint);
   overflow-x: hidden;
   width: 100%;
 }
@@ -29,8 +43,8 @@ body {
   left: 0;
   height: 100vh;
   width: 280px;
-  background-color: #f8f9fa;
-  border-right: 2px solid #dee2e6;
+  background-color: white;
+  border-right: 2px solid var(--border);
   z-index: 100;
   overflow-y: auto;
   transition: transform 0.3s ease;
@@ -42,7 +56,7 @@ body {
   top: 10px;
   left: 10px;
   z-index: 101;
-  background-color: #57A9BB;
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 0.75rem 1rem;
@@ -54,11 +68,11 @@ body {
 }
 
 .sidebar-toggle:hover {
-  background-color: #2E6B7A;
+  background-color: var(--primary-dark);
 }
 
 .sidebar-toggle.active {
-  background-color: #7FB8C8;
+  background-color: var(--primary-dark);
 }
 
 .sidebar-content {
@@ -68,7 +82,7 @@ body {
 
 .sidebar-logo {
   padding: 0.75rem 1rem 1rem;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid var(--border);
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -76,10 +90,10 @@ body {
 }
 
 .sidebar-logo-text {
-  font-family: 'Overpass', system-ui, sans-serif;
-  font-weight: 600;
+  font-family: var(--sans);
+  font-weight: 700;
   font-size: 1rem;
-  color: #2E6B7A;
+  color: var(--primary);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -91,25 +105,25 @@ body {
 
 .sidebar-header {
   padding: 0 1.5rem 1rem;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid var(--border);
   margin-bottom: 1rem;
 }
 
 .sidebar-header h2 {
-  color: #57A9BB;
+  color: var(--primary);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
 }
 
 .sidebar-header-link {
-  color: #57A9BB;
+  color: var(--primary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .sidebar-header-link:hover {
-  color: #2E6B7A;
+  color: var(--primary-dark);
   text-decoration: underline;
 }
 
@@ -124,7 +138,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0.75rem 1rem;
-  color: #333;
+  color: var(--text);
   text-decoration: none;
   border-radius: 6px;
   transition: background-color 0.2s, color 0.2s;
@@ -133,33 +147,33 @@ body {
 }
 
 .sidebar-item:hover {
-  background-color: #e9ecef;
-  color: #57A9BB;
+  background-color: var(--bg-tint);
+  color: var(--primary);
 }
 
 .sidebar-item.active {
-  background-color: #E8F0F8;
-  color: #2E6B7A;
+  background-color: var(--bg-tint);
+  color: var(--primary-dark);
   font-weight: 600;
-  border-left: 4px solid #57A9BB;
+  border-left: 4px solid var(--primary);
   padding-left: 0.75rem;
 }
 
 .sidebar-item.bonus {
-  color: #666;
+  color: var(--text-muted);
   font-style: italic;
 }
 
 .sidebar-item.bonus.active {
-  background-color: #E8F0F8;
-  color: #2E6B7A;
+  background-color: var(--bg-tint);
+  color: var(--primary-dark);
   font-style: normal;
 }
 
 .step-number {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
-  color: #2E6B7A;
+  color: var(--primary);
   margin-bottom: 0.25rem;
 }
 
@@ -168,7 +182,7 @@ body {
 }
 
 .step-title {
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.3;
 }
 
@@ -178,15 +192,15 @@ body {
 
 .sidebar-divider {
   height: 1px;
-  background-color: #dee2e6;
+  background-color: var(--border);
   margin: 0.75rem 0;
 }
 
 .sidebar-label {
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #666;
+  font-weight: 700;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -196,7 +210,7 @@ body {
   flex: 1;
   margin-left: 280px;
   padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
-  background-color: #f0f4f8;
+  background-color: var(--bg-tint);
   min-width: 0;
   width: 100%;
 }
@@ -212,27 +226,27 @@ body {
 }
 
 .workshop-content h1 {
-  color: #57A9BB;
+  color: var(--primary);
   margin-bottom: 1.5rem;
   font-size: 2.5rem;
-  font-weight: 600;
-  border-bottom: 4px solid #57A9BB;
+  font-weight: 700;
+  border-bottom: 4px solid var(--primary);
   padding-bottom: 0.75rem;
   letter-spacing: -0.02em;
 }
 
 .workshop-content h2 {
-  color: #2E6B7A;
+  color: var(--primary-dark);
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
   font-size: 1.875rem;
-  font-weight: 600;
-  border-bottom: 2px solid #7FB8C8;
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary-light);
   padding-bottom: 0.5rem;
 }
 
 .workshop-content h3 {
-  color: #57A9BB;
+  color: var(--primary);
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
   font-size: 1.5rem;
@@ -240,7 +254,7 @@ body {
 }
 
 .workshop-content h4 {
-  color: #7FB8C8;
+  color: var(--primary-dark);
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
@@ -278,13 +292,13 @@ body {
 
 /* Code Blocks */
 .workshop-content code {
-  background-color: #f1f3f5;
+  background-color: var(--bg-tint);
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
-  font-family: 'Overpass Mono', system-ui, monospace;
+  font-family: var(--mono);
   font-size: 0.9em;
-  color: #57A9BB;
-  border: 1px solid #dee2e6;
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
 }
 
 .workshop-content pre {
@@ -313,32 +327,32 @@ body {
 
 /* Links */
 .workshop-content a {
-  color: #57A9BB;
+  color: var(--primary);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s, color 0.2s;
 }
 
 .workshop-content a:hover {
-  color: #7FB8C8;
-  border-bottom-color: #7FB8C8;
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary-dark);
 }
 
 /* Blockquotes */
 .workshop-content blockquote {
-  border-left: 4px solid #57A9BB;
+  border-left: 4px solid var(--primary);
   padding: 1rem 1.5rem;
   margin-left: 0;
   margin-bottom: 1.5rem;
   color: #555;
   font-style: italic;
-  background-color: #f8f9fa;
+  background-color: var(--bg-tint);
   border-radius: 4px;
 }
 
 /* Footer */
 .workshop-footer {
-  background-color: #2E6B7A;
+  background-color: var(--dark);
   color: white;
   text-align: center;
   padding: 2.5rem 1rem;
@@ -346,13 +360,13 @@ body {
 }
 
 .workshop-footer a {
-  color: #7FB8C8;
+  color: var(--primary-light);
   text-decoration: underline;
   transition: color 0.2s;
 }
 
 .workshop-footer a:hover {
-  color: #57A9BB;
+  color: white;
 }
 
 .workshop-footer p {
@@ -368,28 +382,18 @@ body {
 
 /* Strong/Bold Text */
 .workshop-content strong {
-  color: #2E6B7A;
-  font-weight: 600;
-}
-
-/* Color palette */
-:root {
-  --workshop-primary: #57A9BB;
-  --workshop-primary-dark: #2E6B7A;
-  --workshop-primary-light: #7FB8C8;
-  --workshop-accent-green: #4CAF50;
-  --workshop-accent-yellow: #FFEB3B;
-  --workshop-accent-red: #F44336;
+  color: var(--dark);
+  font-weight: 700;
 }
 
 .workshop-content mark {
-  background-color: #E8F0F8;
-  color: #2E6B7A;
+  background-color: var(--bg-tint);
+  color: var(--primary-dark);
   padding: 0.1rem 0.3rem;
   border-radius: 3px;
 }
 
-/* Warning / Info / Success callout boxes */
+/* Callout boxes */
 .workshop-content .warning,
 .workshop-content .important {
   background-color: rgba(255, 235, 59, 0.15);
@@ -407,25 +411,25 @@ body {
 
 .workshop-content .error,
 .workshop-content .alert {
-  background-color: rgba(244, 67, 54, 0.1);
-  border-left: 4px solid #F44336;
+  background-color: rgba(204, 43, 72, 0.1);
+  border-left: 4px solid var(--accent-red);
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 4px;
-  color: #B71C1C;
+  color: #7a001a;
 }
 
 .workshop-content .error::before,
 .workshop-content .alert::before {
   content: "⚠ ";
-  color: #F44336;
+  color: var(--accent-red);
   font-weight: bold;
   margin-right: 0.5rem;
 }
 
 .workshop-content .info {
-  background-color: rgba(87, 169, 187, 0.08);
-  border-left: 4px solid #57A9BB;
+  background-color: rgba(0, 144, 22, 0.08);
+  border-left: 4px solid var(--primary);
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 4px;
@@ -437,8 +441,8 @@ body {
 }
 
 .workshop-content .success-box {
-  background-color: rgba(76, 175, 80, 0.1);
-  border-left: 4px solid #4CAF50;
+  background-color: rgba(0, 144, 22, 0.1);
+  border-left: 4px solid var(--primary);
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 4px;
@@ -446,7 +450,7 @@ body {
 
 .workshop-content .success-box::before {
   content: "✓ ";
-  color: #4CAF50;
+  color: var(--primary);
   font-weight: bold;
   margin-right: 0.5rem;
 }
