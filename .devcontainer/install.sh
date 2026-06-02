@@ -37,4 +37,4 @@ echo "    PMTiles CLI $(pmtiles version)"
 
 echo ""
 echo "Setup complete. To start the map server:"
-echo "  cd /workspaces/osm-trail-map && caddy run"
+echo "  cd /workspaces/intro-to-web-maps && caddy run"
