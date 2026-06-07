@@ -1,9 +1,5 @@
 # macOS
 .DS_Store
 
-# PMTiles terrain file — participants download this in Step 5
-# (too large to commit; see README for download instructions)
-sources/*.pmtiles
-
 # Node (if you ever run a local build tool)
 node_modules/

@@ -1,0 +1,8 @@
+/*
+  Effigy Mounds — Madison area, WI
+  OSM tag: historic=archaeological_site
+  Paste into https://overpass-turbo.eu and click Run → Export → GeoJSON
+*/
+[out:json][timeout:60];
+node["historic"="archaeological_site"](43.01,-89.55,43.18,-89.28);
+out geom;

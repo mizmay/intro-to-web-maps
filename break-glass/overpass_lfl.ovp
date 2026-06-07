@@ -1,0 +1,8 @@
+/*
+  Little Free Libraries — Madison, WI
+  OSM tag: amenity=public_bookcase
+  Paste into https://overpass-turbo.eu and click Run → Export → GeoJSON
+*/
+[out:json][timeout:60];
+node["amenity"="public_bookcase"](43.01,-89.55,43.18,-89.28);
+out geom;

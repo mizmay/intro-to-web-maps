@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Effigy Mounds — Madison</title>
+  <script src="../lib/maplibre-gl.5.24.0.js"></script>
+  <link href="../lib/maplibre-gl.5.24.0.css" rel="stylesheet" />
+  <script src="../lib/pmtiles.4.3.0.js"></script>
+  <script src="../lib/load-svg.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    const protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol('pmtiles', protocol.tile.bind(protocol));
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: '../basemaps/style-imagery.json',
+      center: [-89.375, 43.1],
+      zoom: 11,
+      hash: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    map.on('load', async function () {
+      map.addImage('mound', await loadSVG('../basemaps/icons/mound.svg'));
+
+      map.addSource('mounds', {
+        type: 'geojson',
+        data: 'effigy_mounds.geojson'
+      });
+
+      map.addLayer({
+        id: 'mounds-icons',
+        type: 'symbol',
+        source: 'mounds',
+        layout: {
+          'icon-image': 'mound',
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 1],
+          'icon-allow-overlap': true
+        },
+      });
+
+      map.on('click', 'mounds-icons', function (e) {
+        const props = e.features[0].properties;
+        const lines = [];
+        if (props.name)                lines.push(`<strong>${props.name}</strong>`);
+        if (props.archaeological_site) lines.push(`Type: ${props.archaeological_site}`);
+        if (props.wikipedia)           lines.push(`<a href="https://en.wikipedia.org/wiki/${props.wikipedia}" target="_blank">Wikipedia</a>`);
+
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(lines.length ? lines.join('<br>') : 'Archaeological Site')
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'mounds-icons', () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', 'mounds-icons', () => map.getCanvas().style.cursor = '');
+    });
+  </script>
+</body>
+</html>

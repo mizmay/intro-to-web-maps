@@ -2,15 +2,15 @@
 	root * .
 	file_server
 
-	# CORS headers — required for Maputnik (Step 5) to load style.json and
-	# GeoJSON sources from your local server
+	# CORS headers — required for cross-origin requests (basemap glyphs/sprites,
+	# OSM US vector tiles) and for GeoJSON sources loaded from your local server
 	header {
 		Access-Control-Allow-Origin *
 		Access-Control-Allow-Methods "GET, OPTIONS"
 		Access-Control-Allow-Headers "Content-Type"
 	}
 
-	# Enable byte-range requests — required for PMTiles (terrain in Step 5)
+	# Enable byte-range requests — required for PMTiles
 	@pmtiles {
 		path *.pmtiles
 	}

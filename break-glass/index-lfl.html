@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Free Libraries — Madison</title>
+  <script src="../lib/maplibre-gl.5.24.0.js"></script>
+  <link href="../lib/maplibre-gl.5.24.0.css" rel="stylesheet" />
+  <script src="../lib/pmtiles.4.3.0.js"></script>
+  <script src="../lib/load-svg.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    const protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol('pmtiles', protocol.tile.bind(protocol));
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: '../basemaps/style-watercolor.json',
+      center: [-89.375, 43.1],
+      zoom: 11,
+      hash: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    map.on('load', async function () {
+      map.addImage('library', await loadSVG('../basemaps/icons/library.svg'));
+
+      map.addSource('lfl', {
+        type: 'geojson',
+        data: 'little_free_libraries.geojson'
+      });
+
+      map.addLayer({
+        id: 'lfl-icons',
+        type: 'symbol',
+        source: 'lfl',
+        layout: {
+          'icon-image': 'library',
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 1],
+          'icon-allow-overlap': true
+        }
+      });
+
+      map.on('click', 'lfl-icons', function (e) {
+        const props = e.features[0].properties;
+        const lines = [];
+        if (props.name)          lines.push(`<strong>${props.name}</strong>`);
+        if (props.brand)         lines.push(`Brand: ${props.brand}`);
+        if (props.operator)      lines.push(`Operator: ${props.operator}`);
+        if (props.website)       lines.push(`<a href="${props.website}" target="_blank">Website</a>`);
+
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(lines.length ? lines.join('<br>') : 'Little Free Library')
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'lfl-icons', () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', 'lfl-icons', () => map.getCanvas().style.cursor = '');
+    });
+  </script>
+</body>
+</html>
