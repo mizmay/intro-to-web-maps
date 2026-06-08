@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Introduction to Web Maps - Intro to Web Maps</title>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../workshop.css">
 </head>
 <body>
@@ -15,7 +15,10 @@
       </button>
       <div class="sidebar-content" id="sidebarContent">
         <div class="sidebar-logo">
-          <span class="sidebar-logo-text">SotM US 2026</span>
+          <a href="https://maplibre.org" class="sidebar-maplibre-link" target="_blank" rel="noreferrer">
+            <img src="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg" alt="MapLibre" class="sidebar-maplibre-logo">
+          </a>
+          <span class="sidebar-event-text">@ SOTMUS 2026</span>
         </div>
         <div class="sidebar-header">
           <h2><a href="../" class="sidebar-header-link">Intro to Web Maps</a></h2>
@@ -27,7 +30,7 @@
               <a href="../step-01/" class="sidebar-item">
             
               <span class="step-number">Step 1</span>
-              <span class="step-title">Verify Setup</span>
+              <span class="step-title">Verify Setup + Preview Basemaps</span>
             </a>
           
             
@@ -35,7 +38,7 @@
               <a href="../step-02/" class="sidebar-item">
             
               <span class="step-number">Step 2</span>
-              <span class="step-title">Extract Trail Data with Overpass Ultra</span>
+              <span class="step-title">Initialize the Map</span>
             </a>
           
             
@@ -43,7 +46,7 @@
               <a href="../step-03/" class="sidebar-item">
             
               <span class="step-number">Step 3</span>
-              <span class="step-title">Render the Map and Add Your Trail Layer</span>
+              <span class="step-title">Extract + Style Data</span>
             </a>
           
             
@@ -51,7 +54,7 @@
               <a href="../step-04/" class="sidebar-item">
             
               <span class="step-number">Step 4</span>
-              <span class="step-title">Publish to GitHub Pages</span>
+              <span class="step-title">Add Data Layer + Popup</span>
             </a>
           
             
@@ -59,7 +62,7 @@
               <a href="../step-05/" class="sidebar-item">
             
               <span class="step-number">Step 5</span>
-              <span class="step-title">Add Terrain (Hillshade)</span>
+              <span class="step-title">Publish to GitHub Pages</span>
             </a>
           
           
@@ -71,7 +74,7 @@
                 <a href="../step-06/" class="sidebar-item bonus">
               
                 <span class="step-number">Step 6</span>
-                <span class="step-title">Add Interactivity</span>
+                <span class="step-title">Swap + Explore</span>
               </a>
             
           
@@ -88,23 +91,24 @@
         
         <p>This workshop guides you through turning OpenStreetMap data into a working web map you can share with your community using only open tools and infrastructure you control.</p>
 <h2>What You'll Build</h2>
-<p>A bike map of the <strong>Capital City State Trail</strong> in Madison, WI rendered with MapLibre GL JS, data from OpenStreetMap, basemap from the OSM US Tileservice, and terrain hillshade from Mapterhorn. Hosted for free on GitHub Pages. No API keys. No proprietary platform. No server required.</p>
+<p>A web map of Madison, WI built from scratch with MapLibre GL JS. You'll choose your theme: <strong>Little Free Libraries</strong> or <strong>Effigy Mounds</strong>, and query it live and style it visually with Overpass Ultra, and add it into a basemap you pick (painterly watercolor or USDA aerial imagery). You'll learn how to host your creation for free on GitHub Pages.</p>
 <hr>
-<h2>Before You Arrive: Setup Instructions</h2>
-<p>Please complete this setup <strong>before the workshop session begins</strong>. The session has 75 minutes of hands-on content; this allows us to hit the ground running.</p>
-<p>If you run into trouble during setup, bring your laptop to the session early and we'll sort it out before 3:45 pm.</p>
-<h3>Fork the Workshop Repository</h3>
-<p>Regardless of which path you choose below, you need to <strong>fork the workshop repository to your own GitHub account</strong>. This gives you a personal copy to edit and publish.</p>
+<h2>Before We Begin: Setup Instructions</h2>
+<p>Please complete this setup <strong>before the workshop session begins</strong>. This way we can hit the ground running.</p>
+<p>If you run into trouble during setup, please reach out to Stephanie May on OpenStreetMap Slack (or find me in person).</p>
+<h3>Fork the Repository</h3>
+<p>The first thing you need to do is <strong>fork the workshop repository</strong>. This gives you a personal copy to edit and publish.</p>
 <ol>
 <li>Create a <a rel="noreferrer" target="_blank" href="https://github.com/join">GitHub account</a> if you don't already have one</li>
 <li>Go to <a rel="noreferrer" target="_blank" href="https://github.com/mizmay/intro-to-web-maps">github.com/mizmay/intro-to-web-maps</a></li>
 <li>Click <strong>Fork</strong> (top right) → <strong>Create fork</strong></li>
-<li>Your copy will live at <code>github.com/YOUR-USERNAME/intro-to-web-maps</code></li>
+<li>Your copy now lives at <code>github.com/YOUR-USERNAME/intro-to-web-maps</code></li>
 </ol>
 <p>At the end of the workshop, you'll enable GitHub Pages on your fork and share a live URL: <code>YOUR-USERNAME.github.io/intro-to-web-maps/</code></p>
 <h3>Choose Your Path</h3>
-<p><strong>Path A: GitHub Codespaces.</strong> Everything runs in a cloud-hosted development environment in your browser with everything pre-installed. No installs required beyond the GitHub account you just used to fork. This is the recommended option for the workshop.</p>
-<p><strong>Path B: Local Setup.</strong> Everything runs on your own machine. Requires installing developer tools (Git, Caddy, VS Code). Choose this if you prefer to work from your laptop or want to continue using the project after the workshop without a cloud environment.</p>
+<p>The additional setup required depends on whether you prefer to work locally on your own machine, and therefore need to install software and dependancies, or whether you are fine using a virtual machine in the cloud.</p>
+<p><strong>Path A: GitHub Codespaces.</strong> Everything runs in a cloud-hosted development environment in your browser with everything pre-installed. No installs required beyond the GitHub account you just used to fork. This is the recommended option for beginners.</p>
+<p><strong>Path B: Local Setup.</strong> Everything runs on your own machine. Requires developer tools (Git, Caddy, VS Code). Choose this if you prefer to work from your laptop or want to continue using the project after the workshop without relying on a GitHub cloud environment.</p>
 <hr>
 <h3>Path A: GitHub Codespaces</h3>
 <p>GitHub Codespaces gives you a full VS Code-like development environment in your browser. Caddy and the PMTiles CLI are pre-configured in the repository's devcontainer; nothing to install.</p>
@@ -118,7 +122,7 @@
 <pre><code class="language-bash">caddy run
 </code></pre>
 <ol start="6">
-<li>A notification will appear asking whether to open the forwarded port. Click <strong>Open in Browser</strong>. You should see the Capital City State Trail map.</li>
+<li>A notification will appear asking whether to open the forwarded port. Click <strong>Open in Browser</strong>. You should see a blank page — that's expected. <code>index.html</code> starts empty; you'll build the map during the workshop.</li>
 </ol>
 <p><strong>Verification checklist:</strong></p>
 <ul>
@@ -187,7 +191,7 @@ cd intro-to-web-maps
 code .
 </code></pre>
 <h3>Optional: PMTiles CLI</h3>
-<p>The PMTiles CLI is used in <strong>Step 5</strong> to download a terrain tile extract for the Madison area. It's already installed in Codespaces. For local setup it's optional; you can follow along conceptually when the command is demonstrated, or install it to run it yourself.</p>
+<p>The PMTiles CLI lets you extract terrain and raster tiles for any area. It's already installed in Codespaces. For local setup it's optional — terrain tiles for the workshop are already included in the repo. Install it if you want to extract tiles for your own area after the workshop.</p>
 <p><strong>macOS (Homebrew):</strong></p>
 <pre><code class="language-bash">brew install pmtiles
 </code></pre>
@@ -209,17 +213,18 @@ caddy version     # v2.x.x
 <pre><code class="language-bash">caddy run
 </code></pre>
 <ol start="4">
-<li>Open <a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/">http://127.0.0.1:1234/</a> in your browser. You should see the Capital City State Trail map. If it loads, you're ready.</li>
+<li>Open <a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/">http://127.0.0.1:1234/</a> in your browser. You should see a blank page — that's expected. <code>index.html</code> starts empty; you'll build the map during the workshop. If the server is running and the page loads, you're ready.</li>
 </ol>
 <hr>
 <h2>Workshop Steps</h2>
 <p>Once you've completed setup, you're ready for the session. Here's what we'll build:</p>
 <ul>
-<li><a href="../step-01/"><strong>Step 1: Verify Setup</strong></a>: Start your server and confirm everything is working</li>
-<li><a href="../step-02/"><strong>Step 2: Extract Trail Data</strong></a>: Run an Overpass Ultra query to export the trail as GeoJSON</li>
-<li><a href="../step-03/"><strong>Step 3: Render the Map</strong></a>: Add the trail layer to the MapLibre map in <code>index.html</code></li>
-<li><a href="../step-04/"><strong>Step 4: Publish to GitHub Pages</strong></a>: Push to GitHub and share your map URL</li>
-<li><a href="../step-05/"><strong>Step 5: Add Terrain</strong></a>: Download hillshade tiles and add them via Maputnik</li>
+<li><a href="../step-01/"><strong>Step 1: Verify Setup + Preview Basemaps</strong></a>: Start your server, open the basemap previews, and choose one</li>
+<li><a href="../step-02/"><strong>Step 2: Initialize the Map</strong></a>: Add MapLibre GL JS to <code>index.html</code> and render your chosen basemap</li>
+<li><a href="../step-03/"><strong>Step 3: Extract + Style Data</strong></a>: Query your dataset from OpenStreetMap and style it in Overpass Ultra</li>
+<li><a href="../step-04/"><strong>Step 4: Add Data Layer + Popup</strong></a>: Add your data to the map with a click popup</li>
+<li><a href="../step-05/"><strong>Step 5: Publish to GitHub Pages</strong></a>: Enable Pages on your fork and share a live URL</li>
+<li><a href="../step-06/"><strong>Step 6 (Bonus): Swap + Explore</strong></a>: Swap basemaps, try the other dataset, or run a new Overpass query</li>
 </ul>
 <hr>
 <h2>About This Workshop</h2>

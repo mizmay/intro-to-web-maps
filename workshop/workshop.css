@@ -1,9 +1,21 @@
 /* Workshop Instruction Pages Styles - SotM US 2026 */
 
 :root {
-  --primary: #009016;
-  --primary-dark: #006b0f;
-  --primary-light: #33cd4b;
+  /* Active palette — swap these to recolor the site */
+  --primary: #285DAA;
+  --primary-dark: #1a3f7a;
+  --primary-light: #95BEFA;
+
+  /* MapLibre brand palette */
+  --ml-blue: #285DAA;
+  --ml-blue-dark: #1a3f7a;
+  --ml-blue-light: #95BEFA;
+
+  /* OSM / conference palette */
+  --osm-green: #009016;
+  --osm-green-dark: #006b0f;
+  --osm-green-light: #33cd4b;
+
   --accent-red: #cc2b48;
   --bg-tint: #f3fff5;
   --dark: #333;
@@ -11,6 +23,7 @@
   --text: #333;
   --text-muted: #666;
   --sans: 'Source Sans 3', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  --display: 'Alata', 'Source Sans 3', Helvetica, Arial, sans-serif;
   --mono: 'Source Code Pro', monospace;
 }
 
@@ -85,22 +98,27 @@ body {
   border-bottom: 2px solid var(--border);
   margin-bottom: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.sidebar-logo-text {
+.sidebar-maplibre-link {
+  display: block;
+  line-height: 0;
+}
+
+.sidebar-maplibre-logo {
+  width: 200px;
+  height: auto;
+}
+
+.sidebar-event-text {
   font-family: var(--sans);
   font-weight: 700;
-  font-size: 1rem;
-  color: var(--primary);
-  letter-spacing: 0.05em;
+  font-size: 1.2rem;
+  color: #285DAA;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-}
-
-.sidebar-logo .logo {
-  width: auto;
-  max-width: 200px;
 }
 
 .sidebar-header {

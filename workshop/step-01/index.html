@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Step 1: Verify Setup - Intro to Web Maps</title>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  <title>Step 1: Verify Setup + Preview Basemaps - Intro to Web Maps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../workshop.css">
 </head>
 <body>
@@ -15,7 +15,10 @@
       </button>
       <div class="sidebar-content" id="sidebarContent">
         <div class="sidebar-logo">
-          <span class="sidebar-logo-text">SotM US 2026</span>
+          <a href="https://maplibre.org" class="sidebar-maplibre-link" target="_blank" rel="noreferrer">
+            <img src="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg" alt="MapLibre" class="sidebar-maplibre-logo">
+          </a>
+          <span class="sidebar-event-text">@ SOTMUS 2026</span>
         </div>
         <div class="sidebar-header">
           <h2><a href="../" class="sidebar-header-link">Intro to Web Maps</a></h2>
@@ -27,7 +30,7 @@
               <a href="./" class="sidebar-item active">
             
               <span class="step-number">Step 1</span>
-              <span class="step-title">Verify Setup</span>
+              <span class="step-title">Verify Setup + Preview Basemaps</span>
             </a>
           
             
@@ -35,7 +38,7 @@
               <a href="../step-02/" class="sidebar-item">
             
               <span class="step-number">Step 2</span>
-              <span class="step-title">Extract Trail Data with Overpass Ultra</span>
+              <span class="step-title">Initialize the Map</span>
             </a>
           
             
@@ -43,7 +46,7 @@
               <a href="../step-03/" class="sidebar-item">
             
               <span class="step-number">Step 3</span>
-              <span class="step-title">Render the Map and Add Your Trail Layer</span>
+              <span class="step-title">Extract + Style Data</span>
             </a>
           
             
@@ -51,7 +54,7 @@
               <a href="../step-04/" class="sidebar-item">
             
               <span class="step-number">Step 4</span>
-              <span class="step-title">Publish to GitHub Pages</span>
+              <span class="step-title">Add Data Layer + Popup</span>
             </a>
           
             
@@ -59,7 +62,7 @@
               <a href="../step-05/" class="sidebar-item">
             
               <span class="step-number">Step 5</span>
-              <span class="step-title">Add Terrain (Hillshade)</span>
+              <span class="step-title">Publish to GitHub Pages</span>
             </a>
           
           
@@ -71,7 +74,7 @@
                 <a href="../step-06/" class="sidebar-item bonus">
               
                 <span class="step-number">Step 6</span>
-                <span class="step-title">Add Interactivity</span>
+                <span class="step-title">Swap + Explore</span>
               </a>
             
           
@@ -82,29 +85,37 @@
     <main class="workshop-main">
       <article class="workshop-content">
         
-          <h1>Step 1: Verify Setup</h1>
+          <h1>Step 1: Verify Setup + Preview Basemaps</h1>
         
 
         
-        <p>Before we dive in, let's confirm everyone's environment is working.</p>
+        <p>Let's confirm your environment is working and take a first look at the two basemaps you'll choose between.</p>
 <h2>Start Your Local Server</h2>
 <p>From the <code>intro-to-web-maps</code> directory, run:</p>
 <pre><code class="language-bash">caddy run
 </code></pre>
-<p>Keep this terminal open for the rest of the workshop. Caddy will serve your map files at <code>http://127.0.0.1:1234/</code>.</p>
-<h2>Open the Map</h2>
+<p>Keep this terminal open for the rest of the workshop. Caddy serves your map files at <code>http://127.0.0.1:1234/</code>.</p>
+<h2>Open the Starting Point</h2>
 <p>Open <a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/">http://127.0.0.1:1234/</a> in your browser.</p>
-<p>You should see the OSM Bright basemap centered on Madison, WI — roads, parks, water, and labels, but no trail yet. That's expected; we'll add it in Step 3.</p>
-<p>If the basemap isn't loading, raise your hand; we'll sort it out now before moving on.</p>
-<h2>What You're Looking At</h2>
-<p><strong><code>index.html</code></strong> initializes a MapLibre GL JS map using the basemap stylesheet. You'll add the trail layer to this file in Step 3.</p>
-<p><strong><code>style.json</code></strong> is the OSM Bright stylesheet; it defines how the basemap is drawn. It points to the OSM US Tileservice for vector tiles and uses open glyph and sprite resources.</p>
-<p><strong><code>sources/</code></strong> is where you'll save your trail GeoJSON in Step 2.</p>
+<p>You'll see a blank page — that's expected. <code>index.html</code> is a bare HTML shell with no map code yet. You'll build it step by step over the next four steps.</p>
+<p>If you see a server error instead of a blank page, raise your hand; we'll sort it out before moving on.</p>
+<h2>Preview the Basemaps</h2>
+<p>The <code>basemaps/</code> folder contains two complete, working map previews. Open both in your browser:</p>
+<ul>
+<li><a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/basemaps/watercolor.html">http://127.0.0.1:1234/basemaps/watercolor.html</a></li>
+<li><a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/basemaps/imagery.html">http://127.0.0.1:1234/basemaps/imagery.html</a></li>
+</ul>
+<p>These are standalone files, not the map you're building. They're here so you can preview both styles before committing to one.</p>
+<p><strong>Watercolor</strong> is a painterly, storybook-style basemap. Terrain hillshade bakes in as soft shading. It pairs well with community data — Little Free Libraries, murals, neighborhood amenities.</p>
+<p><strong>NAIP Imagery</strong> is USDA aerial photography from 2022. Terrain hillshade composites over the photograph. It pairs well with landform and cultural-site data — effigy mounds, ecology, geology.</p>
+<p>Notice the differences: color palette, level of detail, what context each one adds or hides for your data.</p>
+<h2>Choose a Basemap</h2>
+<p>Pick the one you want to start with. You can swap later — Step 6 covers exactly that.</p>
 
         
 
         <hr>
-<p><strong><a href="../">Previous: Setup Instructions</a></strong> | <strong><a href="../step-02/">Next: Step 2: Extract Trail Data</a></strong></p>
+<p><strong><a href="../">Previous: Setup Instructions</a></strong> | <strong><a href="../step-02/">Next: Step 2: Initialize the Map</a></strong></p>
       </article>
     </main>
   </div>

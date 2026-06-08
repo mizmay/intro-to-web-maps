@@ -1,42 +1,42 @@
 {
   "title": "Introduction to Web Maps",
-  "subtitle": "Building a trail map of the Capital City State Trail, Madison WI",
+  "subtitle": "Building a web map of Madison, WI using OpenStreetMap and open tools",
   "instructor": {
     "name": "Stephanie May",
-    "url": "https://2026.stateofthemap.us/"
+    "url": "https://mizmay.com"
   },
   "steps": [
     {
       "number": 1,
       "file": "step-01.html",
-      "title": "Verify Setup"
+      "title": "Verify Setup + Preview Basemaps"
     },
     {
       "number": 2,
       "file": "step-02.html",
-      "title": "Extract Trail Data with Overpass Ultra"
+      "title": "Initialize the Map"
     },
     {
       "number": 3,
       "file": "step-03.html",
-      "title": "Render the Map and Add Your Trail Layer"
+      "title": "Extract + Style Data"
     },
     {
       "number": 4,
       "file": "step-04.html",
-      "title": "Publish to GitHub Pages"
+      "title": "Add Data Layer + Popup"
     },
     {
       "number": 5,
       "file": "step-05.html",
-      "title": "Add Terrain (Hillshade)"
+      "title": "Publish to GitHub Pages"
     }
   ],
   "bonusSteps": [
     {
       "number": 6,
       "file": "step-06.html",
-      "title": "Add Interactivity"
+      "title": "Swap + Explore"
     }
   ],
   "totalSteps": 5,
