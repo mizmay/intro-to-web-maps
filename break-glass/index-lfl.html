@@ -30,7 +30,7 @@
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
     map.on('load', async function () {
-      map.addImage('library', await loadSVG('../basemaps/icons/library.svg'));
+      map.addImage('littlefreelibrary', await loadSVG('../basemaps/icons/littlefreelibrary.svg'));
 
       map.addSource('lfl', {
         type: 'geojson',
@@ -42,23 +42,29 @@
         type: 'symbol',
         source: 'lfl',
         layout: {
-          'icon-image': 'library',
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 1],
+          'icon-image': 'littlefreelibrary',
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.7, 16, 2],
           'icon-allow-overlap': true
         }
       });
 
       map.on('click', 'lfl-icons', function (e) {
         const props = e.features[0].properties;
-        const lines = [];
-        if (props.name)          lines.push(`<strong>${props.name}</strong>`);
-        if (props.brand)         lines.push(`Brand: ${props.brand}`);
-        if (props.operator)      lines.push(`Operator: ${props.operator}`);
-        if (props.website)       lines.push(`<a href="${props.website}" target="_blank">Website</a>`);
+        const title = props.name || 'Little Free Library';
+
+        const content = `
+          <div style="display:flex;align-items:flex-start">
+            <img src="../basemaps/icons/littlefreelibrary.svg" width="48" height="48" alt="Little Free Library Icon">
+            <div>
+              <strong>${title}</strong><br>
+              OSM: <a href="https://www.openstreetmap.org/node/${props.osm_id}" target="_blank">${props.osm_id}</a>
+              ${props.operator ? `<br>Operator: ${props.operator}` : ''}
+            </div>
+          </div>`;
 
         new maplibregl.Popup()
           .setLngLat(e.lngLat)
-          .setHTML(lines.length ? lines.join('<br>') : 'Little Free Library')
+          .setHTML(content)
           .addTo(map);
       });
 
