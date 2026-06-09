@@ -3,8 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Web Map</title>
+  <title>Madison Web Map</title>
+  <script src="lib/maplibre-gl.5.24.0.js"></script>
+  <link href="lib/maplibre-gl.5.24.0.css" rel="stylesheet" />
+  <script src="lib/pmtiles.4.3.0.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { width: 100vw; height: 100vh; }
+  </style>
 </head>
 <body>
+  <div id="map"></div>
+  <script>
+    const protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol('pmtiles', protocol.tile.bind(protocol));
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'basemaps/style-imagery.json',
+      center: [-89.375, 43.1],
+      zoom: 11,
+      minZoom: 10,
+      maxZoom: 14,
+      maxBounds: [[-89.65, 42.95], [-89.10, 43.25]],
+      attributionControl: { compact: true },
+      hash: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+  </script>
 </body>
 </html>

@@ -4,5 +4,8 @@
 # Node (if you ever run a local build tool)
 node_modules/
 
+# Wrangler local dev state
+.wrangler/
+
 # PMTiles source files
 sources/madison_terrain.pmtiles

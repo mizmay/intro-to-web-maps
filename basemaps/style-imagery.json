@@ -16,10 +16,13 @@
     },
     "terrain": {
       "type": "raster-dem",
-      "url": "pmtiles://https://pub-de3da5430b6a4d5188ff686b445b9703.r2.dev/madison_terrain.pmtiles",
+      "tiles": [
+        "https://tiles.mapterhorn.com/{z}/{x}/{y}.webp"
+      ],
+      "encoding": "terrarium",
       "tileSize": 512,
-      "minzoom": 0,
-      "maxzoom": 16
+      "maxzoom": 16,
+      "attribution": "<a href='https://mapterhorn.com/attribution'>© Mapterhorn</a>"
     },
     "naip": {
       "type": "raster",
@@ -43,7 +46,7 @@
       "type": "raster",
       "source": "naip",
       "paint": {
-        "raster-opacity": 0.8
+        "raster-opacity": 0.9
       }
     },
     {
@@ -53,10 +56,10 @@
       "paint": {
         "hillshade-illumination-direction": 315,
         "hillshade-illumination-anchor": "map",
-        "hillshade-exaggeration": 0.65,
-        "hillshade-shadow-color": "rgba(30,40,80,0.45)",
-        "hillshade-highlight-color": "rgba(255,240,200,0.4)",
-        "hillshade-accent-color": "rgba(10,15,50,0.5)"
+        "hillshade-exaggeration": 0.75,
+        "hillshade-shadow-color": "rgba(34,40,66,0.38)",
+        "hillshade-highlight-color": "rgba(255,240,214,0.35)",
+        "hillshade-accent-color": "rgba(12,14,30,0.45)"
       }
     },
     {
@@ -66,23 +69,10 @@
       "paint": {
         "hillshade-illumination-direction": 45,
         "hillshade-illumination-anchor": "map",
-        "hillshade-exaggeration": 0.3,
-        "hillshade-shadow-color": "rgba(50,60,100,0.22)",
-        "hillshade-highlight-color": "rgba(255,248,230,0.18)",
-        "hillshade-accent-color": "rgba(20,25,60,0.22)"
-      }
-    },
-    {
-      "id": "terrain-hillshade-s",
-      "type": "hillshade",
-      "source": "terrain",
-      "paint": {
-        "hillshade-illumination-direction": 180,
-        "hillshade-illumination-anchor": "map",
-        "hillshade-exaggeration": 0.2,
-        "hillshade-shadow-color": "rgba(40,50,90,0.18)",
-        "hillshade-highlight-color": "rgba(255,248,235,0.12)",
-        "hillshade-accent-color": "rgba(15,20,55,0.2)"
+        "hillshade-exaggeration": 0.35,
+        "hillshade-shadow-color": "rgba(54,64,96,0.28)",
+        "hillshade-highlight-color": "rgba(255,246,234,0.18)",
+        "hillshade-accent-color": "rgba(26,26,46,0.25)"
       }
     },
     {
