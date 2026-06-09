@@ -14,13 +14,10 @@ Fork this repo and follow the workshop instructions at [mizmay.github.io/intro-t
 intro-to-web-maps/
 ├── basemaps/              # Two basemap styles to choose from
 │   ├── style-watercolor.json
-│   ├── style-imagery.json
-│   ├── watercolor.html    (preview)
-│   └── imagery.html       (preview)
+│   └── style-imagery.json
 ├── break-glass/           # Reference implementations + fallback data
 ├── lib/                   # MapLibre GL JS and PMTiles (local copies)
 ├── sources/               # Your map data goes here
-│   ├── raster-dem.pmtiles
 │   ├── raster-imagery.pmtiles
 │   └── raster-map.pmtiles
 ├── .nojekyll              # Skips Jekyll processing on GitHub Pages
