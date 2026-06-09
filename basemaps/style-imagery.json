@@ -16,8 +16,10 @@
     },
     "terrain": {
       "type": "raster-dem",
-      "url": "pmtiles://../sources/madison_terrain.pmtiles",
-      "tileSize": 512
+      "url": "pmtiles://https://pub-de3da5430b6a4d5188ff686b445b9703.r2.dev/madison_terrain.pmtiles",
+      "tileSize": 512,
+      "minzoom": 0,
+      "maxzoom": 16
     },
     "naip": {
       "type": "raster",
