@@ -26,6 +26,7 @@ Open via Caddy: `http://localhost:1234/break-glass/index-lfl.html`
 | `effigy_mounds.geojson` | Pre-exported GeoJSON — Madison area `historic=archaeological_site` (exported 2026-06-06) |
 | `overpass_lfl.ovp` | Overpass QL query for Little Free Libraries |
 | `overpass_mounds.ovp` | Overpass QL query for Effigy Mounds |
+| `raster-dem.pmtiles` | Terrain DEM for Madison area — self-hosted fallback if Mapterhorn is unavailable |
 
 ### If Overpass Ultra is down but Overpass Turbo works
 
