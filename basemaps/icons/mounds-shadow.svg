@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="68" height="34" viewBox="-250 250 1700 850">
+  <defs>
+    <!-- form shadow: lit on the NW slope, shaded on the SE slope; saturated to pop off muted imagery -->
+    <linearGradient id="form" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e58a3a"/>
+      <stop offset="0.55" stop-color="#c85a1d"/>
+      <stop offset="1" stop-color="#8a3b0f"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+  <!-- contact shadow: a blurred pool under the base footprint, so the mound sits on the ground -->
+  <ellipse cx="615" cy="974" rx="455" ry="40" fill="#241007" opacity="0.45" filter="url(#soft)"/>
+  <!-- mound: saturated terracotta form, deep-sienna edge to hold the silhouette -->
+  <path fill="url(#form)" stroke="#6f2a10" stroke-width="28" stroke-linejoin="round" paint-order="stroke fill"
+    d="m0 859.69c257.7-298.9 268.6-519.38 600-519.38s325.46 200.79 600 519.37c-300 200 -900 200 -1200 0z"/>
+</svg>

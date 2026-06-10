@@ -30,7 +30,7 @@
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
     map.on('load', async function () {
-      map.addImage('mound', await loadSVG('../basemaps/icons/mound.svg'));
+      map.addImage('mound', await loadSVG('../basemaps/icons/mounds-shadow.svg'));
 
       map.addSource('mounds', {
         type: 'geojson',
@@ -43,7 +43,7 @@
         source: 'mounds',
         layout: {
           'icon-image': 'mound',
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 1],
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 0.75],
           'icon-allow-overlap': true
         },
       });
