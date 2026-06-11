@@ -207,8 +207,8 @@ Once you've completed setup, you're ready for the session. Here's what we'll bui
 - [**Step 1: Verify Setup + Preview Basemaps**](step-01/): Open the map, read the initialization code, and choose your basemap
 - [**Step 2: Extract + Style Data**](step-02/): Query your dataset from OSM and style it in Overpass Ultra
 - [**Step 3: Add Data Layer + Popup**](step-03/): Add your styled data to the map with a click popup
-- [**Step 4: Publish to GitHub Pages**](step-04/): Enable Pages on your fork and share a live URL
-- [**Bonus: Swap + Explore**](step-05/): Swap basemaps, try the other dataset, or run a new Overpass query
+- [**Step 4: Swap in Custom Icons**](step-04/): Replace the circles with custom SVG markers
+- [**Step 5: Publish to GitHub Pages**](step-05/): Enable Pages on your fork and share a live URL
 
 ---
 

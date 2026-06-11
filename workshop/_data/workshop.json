@@ -24,16 +24,15 @@
     {
       "number": 4,
       "file": "step-04.html",
-      "title": "Publish to GitHub Pages"
-    }
-  ],
-  "bonusSteps": [
+      "title": "Swap in Custom Icons"
+    },
     {
       "number": 5,
       "file": "step-05.html",
-      "title": "Swap + Explore"
+      "title": "Publish to GitHub Pages"
     }
   ],
-  "totalSteps": 4,
-  "totalBonusSteps": 1
+  "bonusSteps": [],
+  "totalSteps": 5,
+  "totalBonusSteps": 0
 }
