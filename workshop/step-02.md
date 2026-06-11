@@ -1,128 +1,120 @@
 ---
 layout: base.njk
-title: "Step 2: Initialize the Map"
+title: "Step 2: Extract + Style Data"
 step: 2
 ---
 
-Open `index.html` in your editor. You'll see a bare HTML shell — just a doctype, a `<head>` with a title, and an empty `<body>`. By the end of this step, your chosen basemap will be rendering at `http://127.0.0.1:1234/`.
+You'll query live OSM data and style it visually in Overpass Ultra. The style values you choose here are what you'll carry into `index.html` in the next step.
 
-## Add the MapLibre Stylesheet
+## Choose Your Dataset
 
-In the `<head>`, add the MapLibre GL JS stylesheet:
+**Option A: Little Free Libraries.** Community book exchanges tagged `amenity=public_bookcase` in OSM. 40+ locations across Madison. Pairs with the watercolor basemap.
 
-```html
-<link rel="stylesheet" href="lib/maplibre-gl.5.24.0.css">
+**Option B: Effigy Mounds.** Native American earthwork mounds tagged `historic=archaeological_site`. Sparse but significant; each point carries cultural weight. Pairs with the imagery basemap.
+
+The basemap pairing is a recommendation, not a constraint.
+
+## Open Overpass Ultra
+
+Go to [Overpass Ultra](https://overpass-ultra.us/#m=7.47/43.014/-89.192).
+
+Overpass Ultra is a MapLibre-powered tool for querying OSM data. Unlike Overpass Turbo, it uses the MapLibre GL JS style spec: the same properties and values as the style JSON you swapped in `index.html`.
+
+## Run the Query
+
+Zoom or pan the map to Madison, or search for "Madison, Wisconsin." Then paste the query for your dataset and click **Run**:
+
+{% raw %}
+**Option A (Little Free Libraries):**
+```
+[out:json][timeout:60];
+node["amenity"="public_bookcase"]({{bbox}});
+out geom;
 ```
 
-This provides the default controls styling (zoom buttons, compass).
-
-## Size the Map
-
-Still in the `<head>`, add a `<style>` block to make the map fill the viewport:
-
-```html
-<style>
-  body { margin: 0; }
-  #map { width: 100vw; height: 100vh; }
-</style>
+**Option B (Effigy Mounds):**
+```
+[out:json][timeout:60];
+(
+  node["historic"="archaeological_site"]({{bbox}});
+  node["historic"="earthworks"]({{bbox}});
+);
+out geom;
 ```
 
-## Add the Map Container
+`{{bbox}}` is filled in from the current map view. If your request times out, try zooming in further.
+{% endraw %}
 
-In the `<body>`, add the div MapLibre will render into:
+Points should appear on the map. Click one to inspect its OSM properties in the sidebar.
 
-```html
-<div id="map"></div>
+**Break-glass:** If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the `break-glass/` folder.
+
+## Style the Layer
+
+In the style editor, adjust the marker appearance by copying and pasting this above your Overpass query:
+
+```yaml
+---
+style:
+  layers:
+    - type: circle
+      paint:
+        circle-color: purple
+---
 ```
 
-## Load the Libraries
+Click **Run** to see the change.
 
-Just before the closing `</body>` tag, load PMTiles first, then MapLibre:
+## Change the Style
 
-```html
-<script src="lib/pmtiles.4.3.0.js"></script>
-<script src="lib/maplibre-gl.5.24.0.js"></script>
+Under "Pick a Style", switch the background map to something resembling the basemap you chose in Step 1.
+
+You should see a line like this added to your style logic:
+
+```yaml
+  extends: https://tiles.stadiamaps.com/styles/alidade_satellite.json
 ```
 
-PMTiles must load before MapLibre so the protocol handler is available when the map initializes.
+- **Circle color:** pick something that reads against your chosen basemap
+- **Circle radius:** in pixels, 6–10 pixels works well at zoom 11
+- **Circle opacity:** 0.8–1.0
 
-## Register the PMTiles Protocol and Initialize the Map
+Click **Run** to see the change.
 
-After the script tags, add the initialization block:
+## Export the Data
 
-```html
-<script>
-  const protocol = new pmtiles.Protocol();
-  maplibregl.addProtocol('pmtiles', protocol.tile);
+Click **Export** → **GeoJSON**. Your browser downloads the file (usually to your **Downloads** folder). Rename it to match your dataset:
+- `little_free_libraries.geojson` (Option A)
+- `effigy_mounds.geojson` (Option B)
 
-  const map = new maplibregl.Map({
-    container: 'map',
-    style: 'basemaps/style-watercolor.json',
-    center: [-89.375, 43.1],
-    zoom: 11,
-    hash: true
-  });
+## Save It Into Your Repo
 
-  map.addControl(new maplibregl.NavigationControl());
-</script>
+The file needs to live in the `sources/` folder of your project.
+
+**Local setup:** Move the downloaded file from **Downloads** into the `sources/` folder of your cloned repo.
+
+**Codespaces:** Your repo lives in the cloud, not on your laptop, so you need to upload the file into it:
+1. In the file explorer on the left, find and expand the `sources/` folder
+2. Drag the downloaded `.geojson` file from your computer onto the `sources/` folder (or right-click `sources/` → **Upload...** and pick the file)
+3. Confirm the file now appears under `sources/` in the explorer
+
+## Commit Your Data to Your Fork
+
+Save this data to your fork so it's versioned and ready to publish later.
+
+**Use the Source Control panel** (the branch icon in the left sidebar of VS Code / Codespaces): stage the new file under `sources/`, type a commit message, click the checkmark to commit, then **Sync Changes** to push.
+
+**Or Use Terminal (local or Codespaces):**
+```bash
+git add sources/
+git commit -m "Add exported OSM data"
+git push
 ```
 
-`addProtocol` tells MapLibre how to fetch tiles from `.pmtiles` files via HTTP byte-range requests — this is what makes the terrain hillshade work without a tile server.
+## Keep Overpass Ultra Open
 
-Use `style-watercolor.json` if you picked watercolor in Step 1, or `style-imagery.json` if you picked imagery.
-
-**About the style URL:** the basemap styles reference terrain tiles using relative `pmtiles://` paths (e.g., `pmtiles://../sources/raster-dem.pmtiles`). This works because Caddy serves the entire repo from a single origin. If you move the style file to a different origin without the PMTiles files alongside it, the raster layers will fail silently — something to keep in mind when customizing later.
-
-## Complete File
-
-Your `index.html` should now look like this:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Web Map</title>
-  <link rel="stylesheet" href="lib/maplibre-gl.5.24.0.css">
-  <style>
-    body { margin: 0; }
-    #map { width: 100vw; height: 100vh; }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-  <script src="lib/pmtiles.4.3.0.js"></script>
-  <script src="lib/maplibre-gl.5.24.0.js"></script>
-  <script>
-    const protocol = new pmtiles.Protocol();
-    maplibregl.addProtocol('pmtiles', protocol.tile);
-
-    const map = new maplibregl.Map({
-      container: 'map',
-      style: 'basemaps/style-watercolor.json',
-      center: [-89.375, 43.1],
-      zoom: 11,
-      hash: true
-    });
-
-    map.addControl(new maplibregl.NavigationControl());
-  </script>
-</body>
-</html>
-```
-
-## Verify
-
-Open (or hard-refresh) [http://127.0.0.1:1234/](http://127.0.0.1:1234/). Your chosen basemap should fill the browser window, centered on Madison with terrain hillshade visible. The URL bar should update as you pan and zoom.
-
-If the map is blank:
-- Confirm Caddy is still running in your terminal
-- Check that the `style:` path matches the basemap file you have in `basemaps/`
-- Open the browser console (F12) and look for 404 or CORS errors
-
-The preview files `basemaps/watercolor.html` and `basemaps/imagery.html` use the same initialization pattern — open one in your editor as a reference.
+Leave this browser tab open. In the next step you'll recreate this circle layer in `index.html` using the style values you just chose, so keep them handy: your `circle-color`, `circle-radius`, and `circle-opacity`.
 
 ---
 
-**[Previous: Step 1: Verify Setup + Preview Basemaps](../step-01/)** | **[Next: Step 3: Extract + Style Data](../step-03/)**
+**[Previous: Step 1: Verify Setup + Preview Basemaps](../step-01/)** | **[Next: Step 3: Add Data Layer + Popup](../step-03/)**
