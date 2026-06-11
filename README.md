@@ -16,6 +16,7 @@ intro-to-web-maps/
 │   ├── style-watercolor.json
 │   └── style-imagery.json
 ├── break-glass/           # Reference implementations + fallback data
+├── icons/                 # Custom SVG point icons (added to the map in Step 4)
 ├── lib/                   # MapLibre GL JS and PMTiles (local copies)
 ├── sources/               # Your map data goes here
 │   ├── raster-imagery.pmtiles

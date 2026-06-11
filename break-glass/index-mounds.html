@@ -30,7 +30,7 @@
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
     map.on('load', async function () {
-      map.addImage('mound', await loadSVG('../basemaps/icons/mounds-shadow.svg'));
+      map.addImage('mound', await loadSVG('../icons/mounds-shadow.svg'));
 
       map.addSource('mounds', {
         type: 'geojson',
@@ -38,7 +38,7 @@
       });
 
       map.addLayer({
-        id: 'mounds-icons',
+        id: 'mounds',
         type: 'symbol',
         source: 'mounds',
         layout: {
@@ -48,7 +48,7 @@
         },
       });
 
-      map.on('click', 'mounds-icons', function (e) {
+      map.on('click', 'mounds', function (e) {
         const props = e.features[0].properties;
         const lines = [];
         if (props.name)                lines.push(`<strong>${props.name}</strong>`);
@@ -61,8 +61,8 @@
           .addTo(map);
       });
 
-      map.on('mouseenter', 'mounds-icons', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'mounds-icons', () => map.getCanvas().style.cursor = '');
+      map.on('mouseenter', 'mounds', () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', 'mounds', () => map.getCanvas().style.cursor = '');
     });
   </script>
 </body>

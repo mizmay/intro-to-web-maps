@@ -30,17 +30,17 @@
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
     map.on('load', async function () {
-      map.addImage('littlefreelibrary', await loadSVG('../basemaps/icons/littlefreelibrary.svg'));
+      map.addImage('littlefreelibrary', await loadSVG('../icons/littlefreelibrary.svg'));
 
-      map.addSource('lfl', {
+      map.addSource('littlefreelibraries', {
         type: 'geojson',
         data: 'little_free_libraries.geojson'
       });
 
       map.addLayer({
-        id: 'lfl-icons',
+        id: 'littlefreelibraries',
         type: 'symbol',
-        source: 'lfl',
+        source: 'littlefreelibraries',
         layout: {
           'icon-image': 'littlefreelibrary',
           'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.7, 16, 2],
@@ -48,13 +48,13 @@
         }
       });
 
-      map.on('click', 'lfl-icons', function (e) {
+      map.on('click', 'littlefreelibraries', function (e) {
         const props = e.features[0].properties;
         const title = props.name || 'Little Free Library';
 
         const content = `
           <div style="display:flex;align-items:flex-start">
-            <img src="../basemaps/icons/littlefreelibrary.svg" width="48" height="48" alt="Little Free Library Icon">
+            <img src="../icons/littlefreelibrary.svg" width="48" height="48" alt="Little Free Library Icon">
             <div>
               <strong>${title}</strong><br>
               OSM: <a href="https://www.openstreetmap.org/node/${props.osm_id}" target="_blank">${props.osm_id}</a>
@@ -68,8 +68,8 @@
           .addTo(map);
       });
 
-      map.on('mouseenter', 'lfl-icons', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'lfl-icons', () => map.getCanvas().style.cursor = '');
+      map.on('mouseenter', 'littlefreelibraries', () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', 'littlefreelibraries', () => map.getCanvas().style.cursor = '');
     });
   </script>
 </body>
