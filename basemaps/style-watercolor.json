@@ -7,7 +7,7 @@
   ],
   "zoom": 11,
   "glyphs": "https://tiles.openstreetmap.us/fonts/{fontstack}/{range}.pbf",
-  "sprite": "https://openmaptiles.github.io/osm-bright-gl-style/sprite",
+  "sprite": "https://demotiles.maplibre.org/styles/osm-bright-gl-style/sprite",
   "sources": {
     "openmaptiles": {
       "type": "vector",
