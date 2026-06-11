@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 5: Publish to GitHub Pages - Intro to Web Maps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../workshop.css">
+</head>
+<body>
+  <div class="workshop-container">
+    <aside class="workshop-sidebar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <span class="toggle-icon">☰</span>
+      </button>
+      <div class="sidebar-content" id="sidebarContent">
+        <div class="sidebar-logo">
+          <a href="https://maplibre.org" class="sidebar-maplibre-link" target="_blank" rel="noreferrer">
+            <img src="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg" alt="MapLibre" class="sidebar-maplibre-logo">
+          </a>
+          <span class="sidebar-event-text">@ SOTMUS 2026</span>
+        </div>
+        <div class="sidebar-header">
+          <h2><a href="../" class="sidebar-header-link">Intro to Web Maps</a></h2>
+        </div>
+        <nav class="sidebar-nav">
+          
+            
+            
+              <a href="../step-01/" class="sidebar-item">
+            
+              <span class="step-number">Step 1</span>
+              <span class="step-title">Verify Setup + Preview Basemaps</span>
+            </a>
+          
+            
+            
+              <a href="../step-02/" class="sidebar-item">
+            
+              <span class="step-number">Step 2</span>
+              <span class="step-title">Extract + Style Data</span>
+            </a>
+          
+            
+            
+              <a href="../step-03/" class="sidebar-item">
+            
+              <span class="step-number">Step 3</span>
+              <span class="step-title">Add Data Layer + Popup</span>
+            </a>
+          
+            
+            
+              <a href="../step-04/" class="sidebar-item">
+            
+              <span class="step-number">Step 4</span>
+              <span class="step-title">Swap in Custom Icons</span>
+            </a>
+          
+            
+            
+              <a href="./" class="sidebar-item active">
+            
+              <span class="step-number">Step 5</span>
+              <span class="step-title">Publish to GitHub Pages</span>
+            </a>
+          
+          
+        </nav>
+      </div>
+    </aside>
+
+    <main class="workshop-main">
+      <article class="workshop-content">
+        
+          <h1>Step 5: Publish to GitHub Pages</h1>
+        
+
+        
+        <p>Your map works locally. Now publish it.</p>
+<h2>Make Sure Your Work Is Pushed</h2>
+<p>You committed and pushed at the end of Steps 2, 3, and 4, so your fork should already be up to date. Double-check the <strong>Source Control panel</strong> shows no pending changes (or run <code>git status</code>). If anything is uncommitted, commit and push it now before publishing.</p>
+<h2>Enable GitHub Pages</h2>
+<ol>
+<li>Open a new browser tab and go to your fork on GitHub: <code>github.com/YOUR-USERNAME/intro-to-web-maps</code></li>
+<li>Click <strong>Settings</strong> → <strong>Pages</strong> (left sidebar, under "Code and automation")</li>
+<li>Under <strong>Build and deployment</strong>:
+<ul>
+<li>Source: <strong>Deploy from a branch</strong></li>
+<li>Branch: <strong>main</strong> → <strong>/ (root)</strong></li>
+</ul>
+</li>
+<li>Click <strong>Save</strong></li>
+</ol>
+<p>GitHub starts a Pages build. It takes 1–2 minutes.</p>
+<h2>Get Your Live URL</h2>
+<p>After the build completes, the Pages settings page shows a banner with your URL:</p>
+<pre><code>https://YOUR-USERNAME.github.io/intro-to-web-maps/
+</code></pre>
+<p>Open it. Your map should load (basemap, icons, popup), all working from GitHub's servers with no Caddy running.</p>
+<h2>Troubleshooting</h2>
+<p><strong>Map is blank on Pages but works locally:</strong></p>
+<ul>
+<li>Open the browser console at your Pages URL and look for 404s</li>
+<li>The PMTiles files in <code>sources/</code> are committed to the repo, so they should be present; check that the filename in <code>addSource</code> matches exactly</li>
+<li><code>.nojekyll</code> is already committed, so Pages will not try to run Jekyll</li>
+</ul>
+<p><strong>Build failed or page not found:</strong></p>
+<ul>
+<li>Check the <strong>Actions</strong> tab on your fork for the Pages deployment status and any error message</li>
+</ul>
+
+        
+
+        <hr>
+<p><strong><a href="../step-04/">Previous: Step 4: Swap in Custom Icons</a></strong></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="workshop-footer">
+    <p>SotM US 2026 Workshop — <a rel="noreferrer" target="_blank" href="https://openstreetmap.us/events/state-of-the-map-us/2026/">State of the Map US</a> — <a rel="noreferrer" target="_blank" href="https://mizmay.com">Stephanie May</a></p>
+    <p class="footer-attribution">
+      Map data © <a rel="noreferrer" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, ODbL.
+      Basemap © <a rel="noreferrer" target="_blank" href="https://openstreetmap.us/our-work/tileservice/">OSM US Tileservice</a>.
+    </p>
+  </footer>
+
+  <script>
+    // Toggle sidebar on mobile
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarContent = document.getElementById('sidebarContent');
+
+    if (sidebarToggle && sidebarContent) {
+      sidebarToggle.addEventListener('click', function() {
+        const sidebar = sidebarContent.closest('.workshop-sidebar');
+        if (sidebar) {
+          sidebar.classList.toggle('open');
+        }
+        sidebarContent.classList.toggle('open');
+        sidebarToggle.classList.toggle('active');
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          if (!sidebarContent.contains(event.target) && !sidebarToggle.contains(event.target)) {
+            sidebarContent.classList.remove('open');
+            sidebarToggle.classList.remove('active');
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
