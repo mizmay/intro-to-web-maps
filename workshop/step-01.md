@@ -4,7 +4,7 @@ title: "Step 1: Verify Setup + Preview Basemaps"
 step: 1
 ---
 
-Let's confirm your environment is working and take a first look at the two basemaps you'll choose between.
+Let's confirm everything is working and take a first look at the map.
 
 ## Start Your Local Server
 
@@ -14,35 +14,56 @@ From the `intro-to-web-maps` directory, run:
 caddy run
 ```
 
-Keep this terminal open for the rest of the workshop. Caddy serves your map files at `http://127.0.0.1:1234/`.
+Keep this terminal open for the rest of the workshop.
 
-## Open the Starting Point
+## Open the Map
 
-Open [http://127.0.0.1:1234/](http://127.0.0.1:1234/) in your browser.
+Open your map in the browser:
 
-You'll see a blank page — that's expected. `index.html` is a bare HTML shell with no map code yet. You'll build it step by step over the next four steps.
+- **Local setup:** go to [http://127.0.0.1:1234/](http://127.0.0.1:1234/).
+- **Codespaces:** click **Open in Browser** on the forwarded-port notification. If it doesn't appear (it only shows the first time the port is forwarded), open the **Ports** panel in the bottom panel and click the globe icon next to port 1234. Your map opens at a `https://…app.github.dev/` URL unique to your Codespace.
 
-If you see a server error instead of a blank page, raise your hand; we'll sort it out before moving on.
+You'll see NAIP aerial imagery of the Madison area with terrain hillshade. That's your starting point: `index.html` is already initialized with the imagery basemap.
 
-## Preview the Basemaps
+## Read the Initialization Code
 
-The `basemaps/` folder contains two complete, working map previews. Open both in your browser:
+Click on `index.html` to open it in VS Code or open it your editor of choice. Here's what's there and why:
 
-- [http://127.0.0.1:1234/basemaps/watercolor.html](http://127.0.0.1:1234/basemaps/watercolor.html)
-- [http://127.0.0.1:1234/basemaps/imagery.html](http://127.0.0.1:1234/basemaps/imagery.html)
+```javascript
+const protocol = new pmtiles.Protocol();
+maplibregl.addProtocol('pmtiles', protocol.tile.bind(protocol));
+```
 
-These are standalone files, not the map you're building. They're here so you can preview both styles before committing to one.
+This registers a `pmtiles://` URL protocol. MapLibre uses it to load tile data from `.pmtiles` files via HTTP byte-range requests, no tile server needed.
 
-**Watercolor** is a painterly, storybook-style basemap. Terrain hillshade bakes in as soft shading. It pairs well with community data — Little Free Libraries, murals, neighborhood amenities.
+```javascript
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'basemaps/style-imagery.json',
+  center: [-89.375, 43.1],
+  zoom: 11,
+  ...
+});
+```
 
-**NAIP Imagery** is USDA aerial photography from 2022. Terrain hillshade composites over the photograph. It pairs well with landform and cultural-site data — effigy mounds, ecology, geology.
+`style:` points to a JSON file in `basemaps/` that defines what the map looks like: colors, fonts, layer order, tile sources. The rest of the options constrain the map to the Madison area.
 
-Notice the differences: color palette, level of detail, what context each one adds or hides for your data.
+## Preview the Watercolor Basemap
 
-## Choose a Basemap
+Change `'basemaps/style-imagery.json'` to `'basemaps/style-watercolor.json'` in `index.html`, save, and hard-refresh (`Cmd+Shift+R` / `Ctrl+Shift+R`).
 
-Pick the one you want to start with. You can swap later — Step 6 covers exactly that.
+**NAIP Imagery:** USDA aerial photography (2022). Literal and photographic.
+
+**Watercolor:** Stamen Watercolor (CC BY 3.0). Painterly, impressionistic.
+
+Both include terrain hillshade from [Mapterhorn](https://protomaps.com/blog/mapterhorn-terrain/). South-central Wisconsin is a glacial plain; the relief is subtle.
+
+## Choose One
+
+Set the `style:` value back to your preferred basemap and save.
+
+You can swap at any time.
 
 ---
 
-**[Previous: Setup Instructions](../)** | **[Next: Step 2: Initialize the Map](../step-02/)**
+**[Previous: Setup Instructions](../)** | **[Next: Step 2: Extract + Style Data](../step-02/)**

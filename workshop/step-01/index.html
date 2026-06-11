@@ -38,7 +38,7 @@
               <a href="../step-02/" class="sidebar-item">
             
               <span class="step-number">Step 2</span>
-              <span class="step-title">Initialize the Map</span>
+              <span class="step-title">Extract + Style Data</span>
             </a>
           
             
@@ -46,7 +46,7 @@
               <a href="../step-03/" class="sidebar-item">
             
               <span class="step-number">Step 3</span>
-              <span class="step-title">Extract + Style Data</span>
+              <span class="step-title">Add Data Layer + Popup</span>
             </a>
           
             
@@ -54,14 +54,6 @@
               <a href="../step-04/" class="sidebar-item">
             
               <span class="step-number">Step 4</span>
-              <span class="step-title">Add Data Layer + Popup</span>
-            </a>
-          
-            
-            
-              <a href="../step-05/" class="sidebar-item">
-            
-              <span class="step-number">Step 5</span>
               <span class="step-title">Publish to GitHub Pages</span>
             </a>
           
@@ -71,9 +63,9 @@
             
               
               
-                <a href="../step-06/" class="sidebar-item bonus">
+                <a href="../step-05/" class="sidebar-item bonus">
               
-                <span class="step-number">Step 6</span>
+                <span class="step-number">Step 5</span>
                 <span class="step-title">Swap + Explore</span>
               </a>
             
@@ -89,33 +81,47 @@
         
 
         
-        <p>Let's confirm your environment is working and take a first look at the two basemaps you'll choose between.</p>
+        <p>Let's confirm everything is working and take a first look at the map.</p>
 <h2>Start Your Local Server</h2>
 <p>From the <code>intro-to-web-maps</code> directory, run:</p>
 <pre><code class="language-bash">caddy run
 </code></pre>
-<p>Keep this terminal open for the rest of the workshop. Caddy serves your map files at <code>http://127.0.0.1:1234/</code>.</p>
-<h2>Open the Starting Point</h2>
-<p>Open <a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/">http://127.0.0.1:1234/</a> in your browser.</p>
-<p>You'll see a blank page — that's expected. <code>index.html</code> is a bare HTML shell with no map code yet. You'll build it step by step over the next four steps.</p>
-<p>If you see a server error instead of a blank page, raise your hand; we'll sort it out before moving on.</p>
-<h2>Preview the Basemaps</h2>
-<p>The <code>basemaps/</code> folder contains two complete, working map previews. Open both in your browser:</p>
+<p>Keep this terminal open for the rest of the workshop.</p>
+<h2>Open the Map</h2>
+<p>Open your map in the browser:</p>
 <ul>
-<li><a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/basemaps/watercolor.html">http://127.0.0.1:1234/basemaps/watercolor.html</a></li>
-<li><a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/basemaps/imagery.html">http://127.0.0.1:1234/basemaps/imagery.html</a></li>
+<li><strong>Local setup:</strong> go to <a rel="noreferrer" target="_blank" href="http://127.0.0.1:1234/">http://127.0.0.1:1234/</a>.</li>
+<li><strong>Codespaces:</strong> click <strong>Open in Browser</strong> on the forwarded-port notification. If it doesn't appear (it only shows the first time the port is forwarded), open the <strong>Ports</strong> panel in the bottom panel and click the globe icon next to port 1234. Your map opens at a <code>https://…app.github.dev/</code> URL unique to your Codespace.</li>
 </ul>
-<p>These are standalone files, not the map you're building. They're here so you can preview both styles before committing to one.</p>
-<p><strong>Watercolor</strong> is a painterly, storybook-style basemap. Terrain hillshade bakes in as soft shading. It pairs well with community data — Little Free Libraries, murals, neighborhood amenities.</p>
-<p><strong>NAIP Imagery</strong> is USDA aerial photography from 2022. Terrain hillshade composites over the photograph. It pairs well with landform and cultural-site data — effigy mounds, ecology, geology.</p>
-<p>Notice the differences: color palette, level of detail, what context each one adds or hides for your data.</p>
-<h2>Choose a Basemap</h2>
-<p>Pick the one you want to start with. You can swap later — Step 6 covers exactly that.</p>
+<p>You'll see NAIP aerial imagery of the Madison area with terrain hillshade. That's your starting point: <code>index.html</code> is already initialized with the imagery basemap.</p>
+<h2>Read the Initialization Code</h2>
+<p>Click on <code>index.html</code> to open it in VS Code or open it your editor of choice. Here's what's there and why:</p>
+<pre><code class="language-javascript">const protocol = new pmtiles.Protocol();
+maplibregl.addProtocol('pmtiles', protocol.tile.bind(protocol));
+</code></pre>
+<p>This registers a <code>pmtiles://</code> URL protocol. MapLibre uses it to load tile data from <code>.pmtiles</code> files via HTTP byte-range requests, no tile server needed.</p>
+<pre><code class="language-javascript">const map = new maplibregl.Map({
+  container: 'map',
+  style: 'basemaps/style-imagery.json',
+  center: [-89.375, 43.1],
+  zoom: 11,
+  ...
+});
+</code></pre>
+<p><code>style:</code> points to a JSON file in <code>basemaps/</code> that defines what the map looks like: colors, fonts, layer order, tile sources. The rest of the options constrain the map to the Madison area.</p>
+<h2>Preview the Watercolor Basemap</h2>
+<p>Change <code>'basemaps/style-imagery.json'</code> to <code>'basemaps/style-watercolor.json'</code> in <code>index.html</code>, save, and hard-refresh (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>).</p>
+<p><strong>NAIP Imagery:</strong> USDA aerial photography (2022). Literal and photographic.</p>
+<p><strong>Watercolor:</strong> Stamen Watercolor (CC BY 3.0). Painterly, impressionistic.</p>
+<p>Both include terrain hillshade from <a rel="noreferrer" target="_blank" href="https://protomaps.com/blog/mapterhorn-terrain/">Mapterhorn</a>. South-central Wisconsin is a glacial plain; the relief is subtle.</p>
+<h2>Choose One</h2>
+<p>Set the <code>style:</code> value back to your preferred basemap and save.</p>
+<p>You can swap at any time.</p>
 
         
 
         <hr>
-<p><strong><a href="../">Previous: Setup Instructions</a></strong> | <strong><a href="../step-02/">Next: Step 2: Initialize the Map</a></strong></p>
+<p><strong><a href="../">Previous: Setup Instructions</a></strong> | <strong><a href="../step-02/">Next: Step 2: Extract + Style Data</a></strong></p>
       </article>
     </main>
   </div>
