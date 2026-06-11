@@ -49,7 +49,7 @@ npm install
 npm run build
 ```
 
-Eleventy reads the Markdown files in `workshop/`, processes them through the Nunjucks templates, and outputs HTML in place. The built HTML files are committed alongside the source — GitHub Pages serves them directly.
+Eleventy reads the Markdown files in `workshop/`, processes them through the Nunjucks templates, and outputs HTML in place. The built HTML files are committed alongside the source, and GitHub Pages serves them directly.
 
 ### Preview locally
 
@@ -87,7 +87,7 @@ step: N          # matches the step number in workshop.json; use 'prereqs' for p
 Each page ends with a nav line that `extractNav` pulls into the sidebar slot:
 
 ```markdown
-**[Previous: Step N-1 — Title](../step-0N-1/)** | **[Next: Step N+1 — Title](../step-0N+1/)**
+**[Previous: Step N-1: Title](../step-0N-1/)** | **[Next: Step N+1: Title](../step-0N+1/)**
 ```
 
 Use `<hr>` immediately before the nav line so the filter can locate it.

@@ -63,7 +63,7 @@ GitHub Codespaces gives you a full VS Code-like development environment in your 
 caddy run
 ```
 
-6. A notification may appear asking whether to open the forwarded port. Click **Open in Browser**. You should see NAIP aerial imagery of the Madison area with terrain hillshade — that's `index.html` pre-loaded with the imagery basemap. You're all set for the workshop.
+6. A notification may appear asking whether to open the forwarded port. Click **Open in Browser**. You should see NAIP aerial imagery of the Madison area with terrain hillshade. That's `index.html` pre-loaded with the imagery basemap. You're all set for the workshop.
 
 **Verification checklist:**
 - Codespace launches without errors
@@ -74,7 +74,7 @@ caddy run
 
 ### Path B: Local Setup
 
-You need three tools installed on your machine. Several steps below require a **terminal** — a text-based window where you type commands and press Enter to run them.
+You need three tools installed on your machine. Several steps below require a **terminal**: a text-based window where you type commands and press Enter to run them.
 
 - **macOS:** Open the **Terminal** app. Find it in Applications → Utilities, or press `Cmd+Space` and search "Terminal."
 - **Windows:** Open **Command Prompt** or **PowerShell**. Press the Windows key, type "cmd" or "powershell," and press Enter.
@@ -164,7 +164,7 @@ code .
 
 ### Optional: PMTiles CLI
 
-The PMTiles CLI lets you extract terrain and raster tiles for any area. It's already installed in Codespaces. For local setup it's optional — terrain tiles for the workshop are already included in the repo. Install it if you want to extract tiles for your own area after the workshop.
+The PMTiles CLI lets you extract terrain and raster tiles for any area. It's already installed in Codespaces. For local setup it's optional; terrain tiles for the workshop are already included in the repo. Install it if you want to extract tiles for your own area after the workshop.
 
 **macOS (Homebrew):**
 
@@ -196,7 +196,7 @@ caddy version     # v2.x.x
 caddy run
 ```
 
-4. Open [http://127.0.0.1:1234/](http://127.0.0.1:1234/) in your browser. You should see NAIP aerial imagery of the Madison area with terrain hillshade — that's `index.html` pre-loaded with the imagery basemap. You're all set for the workshop.
+4. Open [http://127.0.0.1:1234/](http://127.0.0.1:1234/) in your browser. You should see NAIP aerial imagery of the Madison area with terrain hillshade. That's `index.html` pre-loaded with the imagery basemap. You're all set for the workshop.
 
 ---
 
