@@ -2727,7 +2727,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": "rgba(40,84,48,0.55)",
+        "line-color": "rgba(30,64,36,0.8)",
         "line-dasharray": [
           3,
           1,
@@ -2747,7 +2747,7 @@
             ],
             [
               12,
-              1.6
+              1.4
             ]
           ]
         }
