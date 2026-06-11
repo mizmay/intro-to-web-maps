@@ -47,39 +47,7 @@ out geom;
 
 Points should appear on the map. Click one to inspect its OSM properties in the sidebar.
 
-**Break-glass:** If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the `break-glass/` folder.
-
-## Style the Layer
-
-In the style editor, adjust the marker appearance by copying and pasting this above your Overpass query:
-
-```yaml
----
-style:
-  layers:
-    - type: circle
-      paint:
-        circle-color: purple
----
-```
-
-Click **Run** to see the change.
-
-## Change the Style
-
-Under "Pick a Style", switch the background map to something resembling the basemap you chose in Step 1.
-
-You should see a line like this added to your style logic:
-
-```yaml
-  extends: https://tiles.stadiamaps.com/styles/alidade_satellite.json
-```
-
-- **Circle color:** pick something that reads against your chosen basemap
-- **Circle radius:** in pixels, 6–10 pixels works well at zoom 11
-- **Circle opacity:** 0.8–1.0
-
-Click **Run** to see the change.
+**Break glass:** If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the `break-glass/` folder.
 
 ## Export the Data
 
@@ -113,7 +81,7 @@ git push
 
 ## Keep Overpass Ultra Open
 
-Leave this browser tab open. In the next step you'll recreate this circle layer in `index.html` using the style values you just chose, so keep them handy: your `circle-color`, `circle-radius`, and `circle-opacity`.
+Leave this browser tab open. In the next step you'll style the circle layer in `index.html` using the properties and values defined by the MapLibre style specification.
 
 ---
 

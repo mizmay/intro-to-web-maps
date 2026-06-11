@@ -77,7 +77,30 @@
         
 
         
-        <p>You have a GeoJSON file in <code>sources/</code> and the style values you chose in Overpass Ultra. Now you'll wire them into the map.</p>
+        <p>You have a GeoJSON file in <code>sources/</code> and now you need to style the points so they show up on the map. You'll do that first in Overpass Ultra, then you'll wire them into the map.</p>
+<p><strong>Break glass:</strong> <code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).</p>
+<h2>Style the Layer</h2>
+<p>In the style editor, adjust the marker appearance by copying and pasting this above your Overpass query:</p>
+<pre><code class="language-yaml">---
+style:
+  layers:
+    - type: circle
+      paint:
+        circle-color: purple
+---
+</code></pre>
+<p>Click <strong>Run</strong> to see the change.</p>
+<h2>Change the Style</h2>
+<p>Under "Pick a Style", switch the background map to something resembling the basemap you chose in Step 1.</p>
+<p>You should see a line like this added to your style logic:</p>
+<pre><code class="language-yaml">  extends: https://tiles.stadiamaps.com/styles/alidade_satellite.json
+</code></pre>
+<ul>
+<li><strong>Circle color:</strong> pick something that reads against your chosen basemap</li>
+<li><strong>Circle radius:</strong> in pixels, 6–10 pixels works well at zoom 11</li>
+<li><strong>Circle opacity:</strong> 0.8–1.0</li>
+</ul>
+<p>Click <strong>Run</strong> to see the change.</p>
 <h2>Add a Source</h2>
 <p>In <code>index.html</code>, after <code>map.addControl(...)</code>, add a <code>load</code> handler:</p>
 <pre><code class="language-javascript">map.on('load', function() {
@@ -143,7 +166,6 @@ map.on('mouseleave', 'points-circles', () =&gt; map.getCanvas().style.cursor = '
 <li>Confirm the <code>"source"</code> field in <code>addLayer</code> matches the id in <code>addSource</code></li>
 <li>Confirm the layer <code>"id"</code> in <code>addLayer</code> matches the id in your event handlers</li>
 </ul>
-<p><strong>Break-glass:</strong> <code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).</p>
 <h2>Commit Your Work</h2>
 <p>You edited <code>index.html</code>. Commit and push it to your fork the same way you committed your data in Step 2: the <strong>Source Control panel</strong>, or <code>git add index.html</code> → commit → push.</p>
 

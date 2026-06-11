@@ -4,7 +4,40 @@ title: "Step 3: Add Data Layer + Popup"
 step: 3
 ---
 
-You have a GeoJSON file in `sources/` and the style values you chose in Overpass Ultra. Now you'll wire them into the map.
+You have a GeoJSON file in `sources/` and now you need to style the points so they show up on the map. You'll do that first in Overpass Ultra, then you'll wire them into the map.
+
+**Break glass:** `break-glass/index-lfl.html` and `break-glass/index-mounds.html` are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).
+
+## Style the Layer
+
+In the style editor, adjust the marker appearance by copying and pasting this above your Overpass query:
+
+```yaml
+---
+style:
+  layers:
+    - type: circle
+      paint:
+        circle-color: purple
+---
+```
+
+Click **Run** to see the change.
+
+## Change the Style
+
+Under "Pick a Style", switch the background map to something resembling the basemap you chose in Step 1.
+
+You should see a line like this added to your style logic:
+
+```yaml
+  extends: https://tiles.stadiamaps.com/styles/alidade_satellite.json
+```
+- **Circle color:** pick something that reads against your chosen basemap
+- **Circle radius:** in pixels, 6–10 pixels works well at zoom 11
+- **Circle opacity:** 0.8–1.0
+
+Click **Run** to see the change.
 
 ## Add a Source
 
@@ -93,8 +126,6 @@ If nothing appears:
 - Open the browser console (F12) and check for errors. Is the GeoJSON path right?
 - Confirm the `"source"` field in `addLayer` matches the id in `addSource`
 - Confirm the layer `"id"` in `addLayer` matches the id in your event handlers
-
-**Break-glass:** `break-glass/index-lfl.html` and `break-glass/index-mounds.html` are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).
 
 ## Commit Your Work
 

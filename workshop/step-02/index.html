@@ -102,29 +102,7 @@ out geom;
 </code></pre>
 <p><code>{{bbox}}</code> is filled in from the current map view. If your request times out, try zooming in further.</p>
 <p>Points should appear on the map. Click one to inspect its OSM properties in the sidebar.</p>
-<p><strong>Break-glass:</strong> If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the <code>break-glass/</code> folder.</p>
-<h2>Style the Layer</h2>
-<p>In the style editor, adjust the marker appearance by copying and pasting this above your Overpass query:</p>
-<pre><code class="language-yaml">---
-style:
-  layers:
-    - type: circle
-      paint:
-        circle-color: purple
----
-</code></pre>
-<p>Click <strong>Run</strong> to see the change.</p>
-<h2>Change the Style</h2>
-<p>Under "Pick a Style", switch the background map to something resembling the basemap you chose in Step 1.</p>
-<p>You should see a line like this added to your style logic:</p>
-<pre><code class="language-yaml">  extends: https://tiles.stadiamaps.com/styles/alidade_satellite.json
-</code></pre>
-<ul>
-<li><strong>Circle color:</strong> pick something that reads against your chosen basemap</li>
-<li><strong>Circle radius:</strong> in pixels, 6–10 pixels works well at zoom 11</li>
-<li><strong>Circle opacity:</strong> 0.8–1.0</li>
-</ul>
-<p>Click <strong>Run</strong> to see the change.</p>
+<p><strong>Break glass:</strong> If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the <code>break-glass/</code> folder.</p>
 <h2>Export the Data</h2>
 <p>Click <strong>Export</strong> → <strong>GeoJSON</strong>. Your browser downloads the file (usually to your <strong>Downloads</strong> folder). Rename it to match your dataset:</p>
 <ul>
@@ -149,7 +127,7 @@ git commit -m "Add exported OSM data"
 git push
 </code></pre>
 <h2>Keep Overpass Ultra Open</h2>
-<p>Leave this browser tab open. In the next step you'll recreate this circle layer in <code>index.html</code> using the style values you just chose, so keep them handy: your <code>circle-color</code>, <code>circle-radius</code>, and <code>circle-opacity</code>.</p>
+<p>Leave this browser tab open. In the next step you'll style the circle layer in <code>index.html</code> using the properties and values defined by the MapLibre style specification.</p>
 
         
 
