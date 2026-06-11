@@ -146,6 +146,22 @@
 <li>Confirm the <code>&lt;script src="lib/load-svg.js"&gt;&lt;/script&gt;</code> tag is in the <code>&lt;head&gt;</code> and your handler reads <code>async function</code>.</li>
 <li>Check the SVG path in <code>addImage</code> resolves (no 404 in the Network tab).</li>
 </ul>
+<h2>Optional: Show the Icon in the Popup</h2>
+<p>Want your popup to match the break-glass reference? You can drop the icon in as a thumbnail. This is optional; skip it if you're short on time.</p>
+<p>Replace the <code>.setHTML(...)</code> call in your <strong>Little Free Libraries</strong> click handler with this version, which wraps the text in a flex row next to the icon:</p>
+<pre><code class="language-javascript">    .setHTML(
+      '&lt;div style="display:flex;align-items:flex-start;gap:0.5rem"&gt;' +
+        '&lt;img src="icons/littlefreelibrary.svg" width="48" height="48" alt=""&gt;' +
+        '&lt;div&gt;' +
+          '&lt;strong&gt;' + (props.name || 'Little Free Library') + '&lt;/strong&gt;&lt;br&gt;' +
+          '&lt;a href="https://www.openstreetmap.org/node/' + props.osm_id + '" target="_blank"&gt;View on OSM&lt;/a&gt;' +
+          (props.operator ? '&lt;br&gt;Operator: ' + props.operator : '') +
+        '&lt;/div&gt;' +
+      '&lt;/div&gt;'
+    )
+</code></pre>
+<p>The <code>&lt;img&gt;</code> points at the same SVG file you registered with <code>addImage</code>. For Effigy Mounds, use <code>icons/mounds-shadow.svg</code> and your own popup fields.</p>
+<p>Hard-refresh and click a point: the icon now appears beside the text.</p>
 <h2>Commit Your Work</h2>
 <p>You edited <code>index.html</code> again. Commit and push it to your fork as before: the <strong>Source Control panel</strong>, or <code>git add index.html</code> → commit → push.</p>
 
