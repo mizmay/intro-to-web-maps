@@ -78,7 +78,9 @@
 
         
         <p>You have a GeoJSON file in <code>sources/</code> and now you need to style the points so they show up on the map. You'll do that first in Overpass Ultra, then you'll wire them into the map.</p>
-<p><strong>Break glass:</strong> <code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).</p>
+<div class="break-glass">
+<p><code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).</p>
+</div>
 <h2>Style the Layer</h2>
 <p>In the style editor, adjust the marker appearance by copying and pasting this above your Overpass query:</p>
 <pre><code class="language-yaml">---
@@ -104,7 +106,7 @@ style:
 <h2>Add a Source</h2>
 <p>In <code>index.html</code>, after <code>map.addControl(...)</code>, add a <code>load</code> handler:</p>
 <pre><code class="language-javascript">map.on('load', function() {
-  map.addSource('points', {
+  map.addSource('littlefreelibraries', {  // or mounds
     type: 'geojson',
     data: 'sources/little_free_libraries.geojson'  // or effigy_mounds.geojson
   });
@@ -114,9 +116,9 @@ style:
 <h2>Add the Layer</h2>
 <p>Inside the same <code>map.on('load', ...)</code> block, after <code>addSource</code>, add a circle layer. Fill in the three paint values you chose in Overpass Ultra:</p>
 <pre><code class="language-javascript">  map.addLayer({
-    id: 'points-circles',
+    id: 'littlefreelibraries',  // or mounds
     type: 'circle',
-    source: 'points',
+    source: 'littlefreelibraries',  // or mounds
     paint: {
       'circle-color': 'purple',
       'circle-radius': 8,
@@ -124,13 +126,15 @@ style:
     }
   });
 </code></pre>
-<p>A note on format: in Overpass Ultra you wrote these as YAML (<code>circle-color: purple</code>). Here they're a JavaScript object, so the keys and any text values need quotes (<code>'circle-color': 'purple'</code>), while numbers like <code>8</code> do not. The <code>source</code> is already set to <code>'points'</code> to match your <code>addSource</code>, and the layer <code>id</code> is <code>'points-circles'</code>; you'll use that id in the handlers below.</p>
+<p>If you chose <strong>Effigy Mounds</strong>, use <code>id: 'mounds'</code> and <code>source: 'mounds'</code>.</p>
+<p>A note on format: in Overpass Ultra you wrote these as YAML (<code>circle-color: purple</code>). Here they're a JavaScript object, so the keys and any text values need quotes (<code>'circle-color': 'purple'</code>), while numbers like <code>8</code> do not. The <code>source</code> matches the name you gave in <code>addSource</code>, and you'll use the layer <code>id</code> in the handlers below.</p>
+<p>Keep this layer <code>id</code> for the rest of the workshop. In Step 4 you'll swap these circles for custom icons, but the <code>id</code> won't change, so the handlers you add next keep working.</p>
 <h2>Verify</h2>
 <p>Hard-refresh your browser tab (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>). Your styled points should appear on the basemap.</p>
 <h2>Add a Popup</h2>
 <p>Still inside <code>map.on('load', ...)</code>, after <code>addLayer</code>, add a click handler. Use your layer id:</p>
 <p><strong>Little Free Libraries:</strong></p>
-<pre><code class="language-javascript">map.on('click', 'points-circles', function(e) {
+<pre><code class="language-javascript">map.on('click', 'littlefreelibraries', function(e) {
   const props = e.features[0].properties;
   new maplibregl.Popup()
     .setLngLat(e.lngLat)
@@ -141,7 +145,7 @@ style:
 });
 </code></pre>
 <p><strong>Effigy Mounds:</strong></p>
-<pre><code class="language-javascript">map.on('click', 'points-circles', function(e) {
+<pre><code class="language-javascript">map.on('click', 'mounds', function(e) {
   const props = e.features[0].properties;
   const lines = [];
   if (props.name)                lines.push('&lt;strong&gt;' + props.name + '&lt;/strong&gt;');
@@ -154,9 +158,9 @@ style:
 });
 </code></pre>
 <h2>Add a Cursor Change</h2>
-<p>After the click handler:</p>
-<pre><code class="language-javascript">map.on('mouseenter', 'points-circles', () =&gt; map.getCanvas().style.cursor = 'pointer');
-map.on('mouseleave', 'points-circles', () =&gt; map.getCanvas().style.cursor = '');
+<p>After the click handler, using the same layer id (<code>littlefreelibraries</code> or <code>mounds</code>):</p>
+<pre><code class="language-javascript">map.on('mouseenter', 'LAYER_ID', () =&gt; map.getCanvas().style.cursor = 'pointer');
+map.on('mouseleave', 'LAYER_ID', () =&gt; map.getCanvas().style.cursor = '');
 </code></pre>
 <h2>Verify</h2>
 <p>Hard-refresh your browser tab (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>). Click one of the styled points and a popup should open. Hover over a point and the cursor should change to a pointer.</p>

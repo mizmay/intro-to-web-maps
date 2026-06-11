@@ -78,38 +78,40 @@
 
         
         <p>Your map works with circles. Now give it character: swap the circle layer for custom SVG icons that match your dataset. You'll change only the <em>look</em> of the layer; its <code>id</code> and <code>source</code> stay the same, so the popup and cursor handlers from Step 3 keep working untouched.</p>
-<p>The repo already includes two icons in <code>basemaps/icons/</code>:</p>
+<p>The repo already includes two icons in <code>icons/</code>:</p>
 <ul>
 <li><code>littlefreelibrary.svg</code> (Little Free Libraries)</li>
 <li><code>mounds-shadow.svg</code> (Effigy Mounds)</li>
 </ul>
-<p><strong>Break glass:</strong> <code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations with the custom icons in place.</p>
+<div class="break-glass">
+<p><code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations with the custom icons in place.</p>
+</div>
 <h2>Load the SVG Helper</h2>
 <p>MapLibre needs SVGs turned into images before it can use them as icons. A small helper, <code>lib/load-svg.js</code>, does that. Add it to the <code>&lt;head&gt;</code> of <code>index.html</code>, right after the PMTiles script:</p>
 <pre><code class="language-html">&lt;script src="lib/pmtiles.4.3.0.js"&gt;&lt;/script&gt;
 &lt;script src="lib/load-svg.js"&gt;&lt;/script&gt;
 </code></pre>
 <h2>Make the Load Handler Async</h2>
-<p><code>loadSVG</code> returns a promise, so you'll <code>await</code> it. Add the word <code>async</code> to your load handler:</p>
+<p>Loading an SVG takes a moment, so <code>loadSVG</code> doesn't hand back the image directly. It returns a <strong>promise</strong>: a placeholder for a value that isn't ready yet. Putting <code>await</code> in front waits for the promise to resolve to the real image before moving on, and <code>await</code> only works inside an <code>async</code> function, so add <code>async</code> to your load handler:</p>
 <pre><code class="language-javascript">map.on('load', async function() {
 </code></pre>
 <p>Everything inside the handler stays where it is.</p>
 <h2>Register the Icon</h2>
 <p>As the <strong>first line inside</strong> <code>map.on('load', ...)</code>, before <code>addSource</code>, register your icon image. Use the one for your dataset:</p>
 <p><strong>Little Free Libraries:</strong></p>
-<pre><code class="language-javascript">  map.addImage('littlefreelibrary', await loadSVG('basemaps/icons/littlefreelibrary.svg'));
+<pre><code class="language-javascript">  map.addImage('littlefreelibrary', await loadSVG('icons/littlefreelibrary.svg'));
 </code></pre>
 <p><strong>Effigy Mounds:</strong></p>
-<pre><code class="language-javascript">  map.addImage('mound', await loadSVG('basemaps/icons/mounds-shadow.svg'));
+<pre><code class="language-javascript">  map.addImage('mound', await loadSVG('icons/mounds-shadow.svg'));
 </code></pre>
 <p>The first argument is the image name you'll reference in the layer; the second is the path to the SVG file.</p>
 <h2>Swap the Layer to Icons</h2>
 <p>In your <code>addLayer</code> call, change two things: the <code>type</code> from <code>circle</code> to <code>symbol</code>, and replace the <code>paint</code> block with a <code>layout</code> block. Keep the same <code>id</code> and <code>source</code>.</p>
 <p><strong>Little Free Libraries:</strong></p>
 <pre><code class="language-javascript">  map.addLayer({
-    id: 'points-circles',
+    id: 'littlefreelibraries',
     type: 'symbol',
-    source: 'points',
+    source: 'littlefreelibraries',
     layout: {
       'icon-image': 'littlefreelibrary',
       'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.7, 16, 2],
@@ -119,9 +121,9 @@
 </code></pre>
 <p><strong>Effigy Mounds:</strong></p>
 <pre><code class="language-javascript">  map.addLayer({
-    id: 'points-circles',
+    id: 'mounds',
     type: 'symbol',
-    source: 'points',
+    source: 'mounds',
     layout: {
       'icon-image': 'mound',
       'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 0.75],
@@ -131,10 +133,10 @@
 </code></pre>
 <p>A few notes:</p>
 <ul>
-<li><code>icon-image</code> must match the name you gave in <code>addImage</code>.</li>
-<li><code>icon-size</code> scales the icon with zoom: <code>10, 0.7, 16, 2</code> means size <code>0.7</code> at zoom 10 growing to <code>2</code> at zoom 16. The mounds icon starts from a larger SVG, so it uses smaller values.</li>
+<li><code>icon-image</code> must match the name you gave in <code>addImage</code> (here <code>littlefreelibrary</code>, singular, matching the SVG file; the layer <code>id</code> is the plural <code>littlefreelibraries</code>).</li>
+<li>In the sample style logic, <code>icon-size</code> scales the icon with zoom. You can play around with these values to change the size of the icon at various scales. The mounds icon starts from a larger SVG, so it uses smaller values.</li>
 <li><code>icon-allow-overlap: true</code> lets every icon draw even when points crowd together; otherwise MapLibre hides the ones that collide.</li>
-<li>The layer <code>id</code> stays <code>points-circles</code>, so your click and cursor handlers from Step 3 still match. (The name is a bit of a misnomer now, but keeping it means nothing else has to change.)</li>
+<li>The <code>id</code> and <code>source</code> are unchanged from Step 3, so your click and cursor handlers still match. You only changed how the layer looks.</li>
 </ul>
 <h2>Verify</h2>
 <p>Hard-refresh your map (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>). Your custom icons should replace the circles and grow as you zoom in. Click one: the popup should still open. Hover: the cursor should still change to a pointer.</p>

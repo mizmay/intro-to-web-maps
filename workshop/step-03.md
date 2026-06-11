@@ -6,7 +6,11 @@ step: 3
 
 You have a GeoJSON file in `sources/` and now you need to style the points so they show up on the map. You'll do that first in Overpass Ultra, then you'll wire them into the map.
 
-**Break glass:** `break-glass/index-lfl.html` and `break-glass/index-mounds.html` are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).
+<div class="break-glass">
+
+`break-glass/index-lfl.html` and `break-glass/index-mounds.html` are complete working reference implementations (they use the custom icons you'll add in Step 4, not circles).
+
+</div>
 
 ## Style the Layer
 
@@ -45,7 +49,7 @@ In `index.html`, after `map.addControl(...)`, add a `load` handler:
 
 ```javascript
 map.on('load', function() {
-  map.addSource('points', {
+  map.addSource('littlefreelibraries', {  // or mounds
     type: 'geojson',
     data: 'sources/little_free_libraries.geojson'  // or effigy_mounds.geojson
   });
@@ -60,9 +64,9 @@ Inside the same `map.on('load', ...)` block, after `addSource`, add a circle lay
 
 ```javascript
   map.addLayer({
-    id: 'points-circles',
+    id: 'littlefreelibraries',  // or mounds
     type: 'circle',
-    source: 'points',
+    source: 'littlefreelibraries',  // or mounds
     paint: {
       'circle-color': 'purple',
       'circle-radius': 8,
@@ -71,7 +75,11 @@ Inside the same `map.on('load', ...)` block, after `addSource`, add a circle lay
   });
 ```
 
-A note on format: in Overpass Ultra you wrote these as YAML (`circle-color: purple`). Here they're a JavaScript object, so the keys and any text values need quotes (`'circle-color': 'purple'`), while numbers like `8` do not. The `source` is already set to `'points'` to match your `addSource`, and the layer `id` is `'points-circles'`; you'll use that id in the handlers below.
+If you chose **Effigy Mounds**, use `id: 'mounds'` and `source: 'mounds'`.
+
+A note on format: in Overpass Ultra you wrote these as YAML (`circle-color: purple`). Here they're a JavaScript object, so the keys and any text values need quotes (`'circle-color': 'purple'`), while numbers like `8` do not. The `source` matches the name you gave in `addSource`, and you'll use the layer `id` in the handlers below.
+
+Keep this layer `id` for the rest of the workshop. In Step 4 you'll swap these circles for custom icons, but the `id` won't change, so the handlers you add next keep working.
 
 ## Verify
 
@@ -83,7 +91,7 @@ Still inside `map.on('load', ...)`, after `addLayer`, add a click handler. Use y
 
 **Little Free Libraries:**
 ```javascript
-map.on('click', 'points-circles', function(e) {
+map.on('click', 'littlefreelibraries', function(e) {
   const props = e.features[0].properties;
   new maplibregl.Popup()
     .setLngLat(e.lngLat)
@@ -96,7 +104,7 @@ map.on('click', 'points-circles', function(e) {
 
 **Effigy Mounds:**
 ```javascript
-map.on('click', 'points-circles', function(e) {
+map.on('click', 'mounds', function(e) {
   const props = e.features[0].properties;
   const lines = [];
   if (props.name)                lines.push('<strong>' + props.name + '</strong>');
@@ -111,11 +119,11 @@ map.on('click', 'points-circles', function(e) {
 
 ## Add a Cursor Change
 
-After the click handler:
+After the click handler, using the same layer id (`littlefreelibraries` or `mounds`):
 
 ```javascript
-map.on('mouseenter', 'points-circles', () => map.getCanvas().style.cursor = 'pointer');
-map.on('mouseleave', 'points-circles', () => map.getCanvas().style.cursor = '');
+map.on('mouseenter', 'LAYER_ID', () => map.getCanvas().style.cursor = 'pointer');
+map.on('mouseleave', 'LAYER_ID', () => map.getCanvas().style.cursor = '');
 ```
 
 ## Verify

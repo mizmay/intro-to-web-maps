@@ -47,7 +47,11 @@ out geom;
 
 Points should appear on the map. Click one to inspect its OSM properties in the sidebar.
 
-**Break glass:** If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the `break-glass/` folder.
+<div class="break-glass">
+
+If all else fails and Overpass Ultra is unavailable, pre-exported GeoJSONs and Overpass Turbo fallback queries are in the `break-glass/` folder.
+
+</div>
 
 ## Export the Data
 

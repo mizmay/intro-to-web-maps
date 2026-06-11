@@ -64,6 +64,22 @@ Set the `style:` value back to your preferred basemap and save.
 
 You can swap at any time.
 
+## How This Workshop Works
+
+A few conventions before we move on:
+
+**Break-glass boxes.** When a live tool is flaky or you fall behind, a red box like the one below points you to a working fallback in the repo. You never *need* it to complete the steps, but it's there if you get stuck.
+
+<div class="break-glass">
+
+This is what a break-glass box looks like. It names the file or fallback to reach for so you can rejoin the group.
+
+</div>
+
+**Commit after every change.** At the end of Steps 2, 3, and 4 you'll commit and push your work to your fork. Committing as you go means your progress is saved and ready to publish in Step 5, and you can always get back to a working state.
+
+**Keep your browser tab open.** Once your map is open (next section), leave that tab open for the whole workshop. It's served by the local Caddy server you're about to start, so you'll just hard-refresh it to see each change rather than reopening it.
+
 ---
 
 **[Previous: Setup Instructions](../)** | **[Next: Step 2: Extract + Style Data](../step-02/)**
