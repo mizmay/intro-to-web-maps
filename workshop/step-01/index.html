@@ -105,6 +105,7 @@ maplibregl.addProtocol('pmtiles', protocol.tile.bind(protocol));
 });
 </code></pre>
 <p><code>style:</code> points to a JSON file in <code>basemaps/</code> that defines what the map looks like: colors, fonts, layer order, tile sources. The rest of the options constrain the map to the Madison area.</p>
+<p>That file follows the <a rel="noreferrer" target="_blank" href="https://maplibre.org/maplibre-style-spec/">MapLibre Style Spec</a>, the format that describes every MapLibre map: its sources, layers, and how each layer is drawn. It's the reference you'll keep coming back to. Skim it once now, you'll use it in every step that follows.</p>
 <h2>Preview the Watercolor Basemap</h2>
 <p>Change <code>'basemaps/style-imagery.json'</code> to <code>'basemaps/style-watercolor.json'</code> in <code>index.html</code>, save, and hard-refresh (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>).</p>
 <p><strong>NAIP Imagery:</strong> USDA aerial photography (2022). Literal and photographic.</p>

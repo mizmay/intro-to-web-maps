@@ -48,6 +48,8 @@ const map = new maplibregl.Map({
 
 `style:` points to a JSON file in `basemaps/` that defines what the map looks like: colors, fonts, layer order, tile sources. The rest of the options constrain the map to the Madison area.
 
+That file follows the [MapLibre Style Spec](https://maplibre.org/maplibre-style-spec/), the format that describes every MapLibre map: its sources, layers, and how each layer is drawn. It's the reference you'll keep coming back to. Skim it once now, you'll use it in every step that follows.
+
 ## Preview the Watercolor Basemap
 
 Change `'basemaps/style-imagery.json'` to `'basemaps/style-watercolor.json'` in `index.html`, save, and hard-refresh (`Cmd+Shift+R` / `Ctrl+Shift+R`).

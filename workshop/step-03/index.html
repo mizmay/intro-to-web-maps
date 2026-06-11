@@ -128,6 +128,7 @@ style:
 </code></pre>
 <p>If you chose <strong>Effigy Mounds</strong>, use <code>id: 'mounds'</code> and <code>source: 'mounds'</code>.</p>
 <p>A note on format: in Overpass Ultra you wrote these as YAML (<code>circle-color: purple</code>). Here they're a JavaScript object, so the keys and any text values need quotes (<code>'circle-color': 'purple'</code>), while numbers like <code>8</code> do not. The <code>source</code> matches the name you gave in <code>addSource</code>, and you'll use the layer <code>id</code> in the handlers below.</p>
+<p>To go further, the <a rel="noreferrer" target="_blank" href="https://maplibre.org/maplibre-style-spec/layers/#circle">MapLibre Style Spec</a> lists every paint property a circle layer supports, including stroke color, stroke width, and blur.</p>
 <p>Keep this layer <code>id</code> for the rest of the workshop. In Step 4 you'll swap these circles for custom icons, but the <code>id</code> won't change, so the handlers you add next keep working.</p>
 <h2>Verify</h2>
 <p>Hard-refresh your browser tab (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>). Your styled points should appear on the basemap.</p>

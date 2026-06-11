@@ -90,6 +90,8 @@ A few notes:
 - `icon-allow-overlap: true` lets every icon draw even when points crowd together; otherwise MapLibre hides the ones that collide.
 - The `id` and `source` are unchanged from Step 3, so your click and cursor handlers still match. You only changed how the layer looks.
 
+The full set of `symbol` layout and paint properties (text labels, placement, rotation, and more) is in the [MapLibre Style Spec](https://maplibre.org/maplibre-style-spec/layers/#symbol).
+
 ## Verify
 
 Hard-refresh your map (`Cmd+Shift+R` / `Ctrl+Shift+R`). Your custom icons should replace the circles and grow as you zoom in. Click one: the popup should still open. Hover: the cursor should still change to a pointer.

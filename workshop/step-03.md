@@ -79,6 +79,8 @@ If you chose **Effigy Mounds**, use `id: 'mounds'` and `source: 'mounds'`.
 
 A note on format: in Overpass Ultra you wrote these as YAML (`circle-color: purple`). Here they're a JavaScript object, so the keys and any text values need quotes (`'circle-color': 'purple'`), while numbers like `8` do not. The `source` matches the name you gave in `addSource`, and you'll use the layer `id` in the handlers below.
 
+To go further, the [MapLibre Style Spec](https://maplibre.org/maplibre-style-spec/layers/#circle) lists every paint property a circle layer supports, including stroke color, stroke width, and blur.
+
 Keep this layer `id` for the rest of the workshop. In Step 4 you'll swap these circles for custom icons, but the `id` won't change, so the handlers you add next keep working.
 
 ## Verify

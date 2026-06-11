@@ -8,9 +8,11 @@ You'll query live OSM data and style it visually in Overpass Ultra. The style va
 
 ## Choose Your Dataset
 
-**Option A: Little Free Libraries.** Community book exchanges tagged `amenity=public_bookcase` in OSM. 40+ locations across Madison. Pairs with the watercolor basemap.
+Pick one of two datasets, both mapped in and around Madison, Wisconsin.
 
-**Option B: Effigy Mounds.** Native American earthwork mounds tagged `historic=archaeological_site`. Sparse but significant; each point carries cultural weight. Pairs with the imagery basemap.
+**Option A: Little Free Libraries.** Pairs with the watercolor basemap. Little Free Library is a book-sharing movement: small neighborhood boxes where anyone can take a book or leave one. The first was built in 2009 by Todd Bol in Hudson, Wisconsin, and grew into a worldwide network of tens of thousands, co-developed with UW-Madison's Rick Brooks. In OSM they're tagged `amenity=public_bookcase`, with 40+ mapped across Madison. Because community members add them rather than an authority, they're a good example of grassroots, crowd-sourced mapping.
+
+**Option B: Effigy Mounds.** Pairs with the imagery basemap. Effigy mounds are earthworks raised by Native peoples in the shapes of animals, birds, and other forms during the Late Woodland period (roughly AD 350–1300). The Madison area has one of the densest concentrations anywhere: the land the Ho-Chunk call Teejop (Dejope), "four lakes," once held an estimated 1,500 mounds, and the Lake Wingra area may have the highest concentration of Native American mounds in the world. Around 80% have been lost to farming and development; surviving groups sit at Governor Nelson State Park, on Picnic Point, and at the Mendota Mental Health Institute. They're tagged `historic=archaeological_site`. The mounds stand only one to four feet tall, so they don't appear in the terrain hillshade; what the terrain shows is the land they were built on, the bluffs above Lake Mendota and the glacial drumlin field.
 
 The basemap pairing is a recommendation, not a constraint.
 
@@ -18,7 +20,7 @@ The basemap pairing is a recommendation, not a constraint.
 
 Go to [Overpass Ultra](https://overpass-ultra.us/#m=7.47/43.014/-89.192).
 
-Overpass Ultra is a MapLibre-powered tool for querying OSM data. Unlike Overpass Turbo, it uses the MapLibre GL JS style spec: the same properties and values as the style JSON you swapped in `index.html`.
+Overpass Ultra is a MapLibre-powered tool for querying OSM data. Unlike Overpass Turbo, it uses the [MapLibre GL JS Style Spec](https://maplibre.org/maplibre-style-spec/): the same properties and values as the style JSON you swapped in `index.html`.
 
 ## Run the Query
 
