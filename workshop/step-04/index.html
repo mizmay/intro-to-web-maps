@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 4: Swap in Custom Icons - Intro to Web Maps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../workshop.css">
+</head>
+<body>
+  <div class="workshop-container">
+    <aside class="workshop-sidebar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <span class="toggle-icon">☰</span>
+      </button>
+      <div class="sidebar-content" id="sidebarContent">
+        <div class="sidebar-logo">
+          <a href="https://maplibre.org" class="sidebar-maplibre-link" target="_blank" rel="noreferrer">
+            <img src="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg" alt="MapLibre" class="sidebar-maplibre-logo">
+          </a>
+          <span class="sidebar-event-text">@ SOTMUS 2026</span>
+        </div>
+        <div class="sidebar-header">
+          <h2><a href="../" class="sidebar-header-link">Intro to Web Maps</a></h2>
+        </div>
+        <nav class="sidebar-nav">
+          
+            
+            
+              <a href="../step-01/" class="sidebar-item">
+            
+              <span class="step-number">Step 1</span>
+              <span class="step-title">Verify Setup + Preview Basemaps</span>
+            </a>
+          
+            
+            
+              <a href="../step-02/" class="sidebar-item">
+            
+              <span class="step-number">Step 2</span>
+              <span class="step-title">Extract + Style Data</span>
+            </a>
+          
+            
+            
+              <a href="../step-03/" class="sidebar-item">
+            
+              <span class="step-number">Step 3</span>
+              <span class="step-title">Add Data Layer + Popup</span>
+            </a>
+          
+            
+            
+              <a href="./" class="sidebar-item active">
+            
+              <span class="step-number">Step 4</span>
+              <span class="step-title">Swap in Custom Icons</span>
+            </a>
+          
+            
+            
+              <a href="../step-05/" class="sidebar-item">
+            
+              <span class="step-number">Step 5</span>
+              <span class="step-title">Publish to GitHub Pages</span>
+            </a>
+          
+          
+        </nav>
+      </div>
+    </aside>
+
+    <main class="workshop-main">
+      <article class="workshop-content">
+        
+          <h1>Step 4: Swap in Custom Icons</h1>
+        
+
+        
+        <p>Your map works with circles. Now give it character: swap the circle layer for custom SVG icons that match your dataset. You'll change only the <em>look</em> of the layer; its <code>id</code> and <code>source</code> stay the same, so the popup and cursor handlers from Step 3 keep working untouched.</p>
+<p>The repo already includes two icons in <code>basemaps/icons/</code>:</p>
+<ul>
+<li><code>littlefreelibrary.svg</code> (Little Free Libraries)</li>
+<li><code>mounds-shadow.svg</code> (Effigy Mounds)</li>
+</ul>
+<p><strong>Break glass:</strong> <code>break-glass/index-lfl.html</code> and <code>break-glass/index-mounds.html</code> are complete working reference implementations with the custom icons in place.</p>
+<h2>Load the SVG Helper</h2>
+<p>MapLibre needs SVGs turned into images before it can use them as icons. A small helper, <code>lib/load-svg.js</code>, does that. Add it to the <code>&lt;head&gt;</code> of <code>index.html</code>, right after the PMTiles script:</p>
+<pre><code class="language-html">&lt;script src="lib/pmtiles.4.3.0.js"&gt;&lt;/script&gt;
+&lt;script src="lib/load-svg.js"&gt;&lt;/script&gt;
+</code></pre>
+<h2>Make the Load Handler Async</h2>
+<p><code>loadSVG</code> returns a promise, so you'll <code>await</code> it. Add the word <code>async</code> to your load handler:</p>
+<pre><code class="language-javascript">map.on('load', async function() {
+</code></pre>
+<p>Everything inside the handler stays where it is.</p>
+<h2>Register the Icon</h2>
+<p>As the <strong>first line inside</strong> <code>map.on('load', ...)</code>, before <code>addSource</code>, register your icon image. Use the one for your dataset:</p>
+<p><strong>Little Free Libraries:</strong></p>
+<pre><code class="language-javascript">  map.addImage('littlefreelibrary', await loadSVG('basemaps/icons/littlefreelibrary.svg'));
+</code></pre>
+<p><strong>Effigy Mounds:</strong></p>
+<pre><code class="language-javascript">  map.addImage('mound', await loadSVG('basemaps/icons/mounds-shadow.svg'));
+</code></pre>
+<p>The first argument is the image name you'll reference in the layer; the second is the path to the SVG file.</p>
+<h2>Swap the Layer to Icons</h2>
+<p>In your <code>addLayer</code> call, change two things: the <code>type</code> from <code>circle</code> to <code>symbol</code>, and replace the <code>paint</code> block with a <code>layout</code> block. Keep the same <code>id</code> and <code>source</code>.</p>
+<p><strong>Little Free Libraries:</strong></p>
+<pre><code class="language-javascript">  map.addLayer({
+    id: 'points-circles',
+    type: 'symbol',
+    source: 'points',
+    layout: {
+      'icon-image': 'littlefreelibrary',
+      'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.7, 16, 2],
+      'icon-allow-overlap': true
+    }
+  });
+</code></pre>
+<p><strong>Effigy Mounds:</strong></p>
+<pre><code class="language-javascript">  map.addLayer({
+    id: 'points-circles',
+    type: 'symbol',
+    source: 'points',
+    layout: {
+      'icon-image': 'mound',
+      'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 16, 0.75],
+      'icon-allow-overlap': true
+    }
+  });
+</code></pre>
+<p>A few notes:</p>
+<ul>
+<li><code>icon-image</code> must match the name you gave in <code>addImage</code>.</li>
+<li><code>icon-size</code> scales the icon with zoom: <code>10, 0.7, 16, 2</code> means size <code>0.7</code> at zoom 10 growing to <code>2</code> at zoom 16. The mounds icon starts from a larger SVG, so it uses smaller values.</li>
+<li><code>icon-allow-overlap: true</code> lets every icon draw even when points crowd together; otherwise MapLibre hides the ones that collide.</li>
+<li>The layer <code>id</code> stays <code>points-circles</code>, so your click and cursor handlers from Step 3 still match. (The name is a bit of a misnomer now, but keeping it means nothing else has to change.)</li>
+</ul>
+<h2>Verify</h2>
+<p>Hard-refresh your map (<code>Cmd+Shift+R</code> / <code>Ctrl+Shift+R</code>). Your custom icons should replace the circles and grow as you zoom in. Click one: the popup should still open. Hover: the cursor should still change to a pointer.</p>
+<p>If the icons don't appear:</p>
+<ul>
+<li>Open the console (F12). A "missing image" warning means <code>icon-image</code> doesn't match the name in <code>addImage</code>.</li>
+<li>Confirm the <code>&lt;script src="lib/load-svg.js"&gt;&lt;/script&gt;</code> tag is in the <code>&lt;head&gt;</code> and your handler reads <code>async function</code>.</li>
+<li>Check the SVG path in <code>addImage</code> resolves (no 404 in the Network tab).</li>
+</ul>
+<h2>Commit Your Work</h2>
+<p>You edited <code>index.html</code> again. Commit and push it to your fork as before: the <strong>Source Control panel</strong>, or <code>git add index.html</code> → commit → push.</p>
+
+        
+
+        <hr>
+<p><strong><a href="../step-03/">Previous: Step 3: Add Data Layer + Popup</a></strong> | <strong><a href="../step-05/">Next: Step 5: Publish to GitHub Pages</a></strong></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="workshop-footer">
+    <p>SotM US 2026 Workshop — <a rel="noreferrer" target="_blank" href="https://openstreetmap.us/events/state-of-the-map-us/2026/">State of the Map US</a> — <a rel="noreferrer" target="_blank" href="https://mizmay.com">Stephanie May</a></p>
+    <p class="footer-attribution">
+      Map data © <a rel="noreferrer" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, ODbL.
+      Basemap © <a rel="noreferrer" target="_blank" href="https://openstreetmap.us/our-work/tileservice/">OSM US Tileservice</a>.
+    </p>
+  </footer>
+
+  <script>
+    // Toggle sidebar on mobile
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarContent = document.getElementById('sidebarContent');
+
+    if (sidebarToggle && sidebarContent) {
+      sidebarToggle.addEventListener('click', function() {
+        const sidebar = sidebarContent.closest('.workshop-sidebar');
+        if (sidebar) {
+          sidebar.classList.toggle('open');
+        }
+        sidebarContent.classList.toggle('open');
+        sidebarToggle.classList.toggle('active');
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          if (!sidebarContent.contains(event.target) && !sidebarToggle.contains(event.target)) {
+            sidebarContent.classList.remove('open');
+            sidebarToggle.classList.remove('active');
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
