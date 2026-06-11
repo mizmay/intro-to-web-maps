@@ -1,6 +1,6 @@
 {
   "title": "Introduction to Web Maps",
-  "subtitle": "Building a web map of Madison, WI using OpenStreetMap and open tools",
+  "subtitle": "Building a web map of Madison, WI using open tools and OpenStreetMap data",
   "instructor": {
     "name": "Stephanie May",
     "url": "https://mizmay.com"
@@ -14,31 +14,26 @@
     {
       "number": 2,
       "file": "step-02.html",
-      "title": "Initialize the Map"
+      "title": "Extract + Style Data"
     },
     {
       "number": 3,
       "file": "step-03.html",
-      "title": "Extract + Style Data"
+      "title": "Add Data Layer + Popup"
     },
     {
       "number": 4,
       "file": "step-04.html",
-      "title": "Add Data Layer + Popup"
-    },
-    {
-      "number": 5,
-      "file": "step-05.html",
       "title": "Publish to GitHub Pages"
     }
   ],
   "bonusSteps": [
     {
-      "number": 6,
-      "file": "step-06.html",
+      "number": 5,
+      "file": "step-05.html",
       "title": "Swap + Explore"
     }
   ],
-  "totalSteps": 5,
+  "totalSteps": 4,
   "totalBonusSteps": 1
 }

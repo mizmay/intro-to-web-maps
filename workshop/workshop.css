@@ -292,6 +292,32 @@ body {
   height: auto;
 }
 
+/* Two images side by side; stacks on narrow screens */
+.workshop-content .figure-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.workshop-content .figure-pair figure {
+  flex: 1 1 240px;
+  margin: 0;
+}
+
+.workshop-content .figure-pair img {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.workshop-content .figure-pair figcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 .workshop-content ul,
 .workshop-content ol {
   margin-left: 2rem;

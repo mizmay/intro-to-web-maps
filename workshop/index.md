@@ -9,6 +9,17 @@ This workshop guides you through turning OpenStreetMap data into a working web m
 
 A web map of Madison, WI built from scratch with MapLibre GL JS. You'll choose your theme: **Little Free Libraries** or **Effigy Mounds**, and query it live and style it visually with Overpass Ultra, and add it into a basemap you pick (painterly watercolor or USDA aerial imagery). You'll learn how to host your creation for free on GitHub Pages.
 
+<div class="figure-pair">
+  <figure>
+    <img src="../images/madison-mounds.webp" alt="Map of Madison, WI showing Native American effigy mounds">
+    <figcaption>Effigy Mounds</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/madison-littlefreelibraries.webp" alt="Map of Madison, WI showing Little Free Library locations">
+    <figcaption>Little Free Libraries</figcaption>
+  </figure>
+</div>
+
 ---
 
 ## Before We Begin: Setup Instructions
@@ -45,19 +56,19 @@ GitHub Codespaces gives you a full VS Code-like development environment in your 
 1. On your fork, click **Code** → **Codespaces** tab → **Create codespace on main**
 2. Wait for the environment to build (about 1–2 minutes on first launch)
 3. A VS Code-like editor opens in your browser with the repo pre-loaded
-4. Open a terminal: **Terminal** menu → **New Terminal** (or press `` Ctrl+` ``)
-5. In the terminal, run:
+4. There should be a command line in the terminal window in the bottom panel. If not, go to **Terminal** menu → **New Terminal** (or press `` Ctrl+` ``)
+5. At the command line in the terminal, type:
 
 ```bash
 caddy run
 ```
 
-6. A notification will appear asking whether to open the forwarded port. Click **Open in Browser**. You should see a blank page — that's expected. `index.html` starts empty; you'll build the map during the workshop.
+6. A notification may appear asking whether to open the forwarded port. Click **Open in Browser**. You should see NAIP aerial imagery of the Madison area with terrain hillshade — that's `index.html` pre-loaded with the imagery basemap. You're all set for the workshop.
 
 **Verification checklist:**
 - Codespace launches without errors
 - `caddy run` starts without errors
-- The map loads in the browser tab that opens from the forwarded port
+- Imagery basemap loads in the browser tab that opens from the forwarded port
 
 ---
 
@@ -98,7 +109,7 @@ git --version
 
 #### 2. VS Code (or another code editor)
 
-You'll be editing `index.html` and `style.json` during the workshop. Any text editor works, but VS Code is recommended. It matches the interface you see in Codespaces.
+You'll be editing `index.html` during the workshop. Any text editor works, but VS Code is recommended. It matches the interface you see in Codespaces.
 
 Download: [code.visualstudio.com](https://code.visualstudio.com/)
 
@@ -114,7 +125,7 @@ brew install caddy
 
 **macOS (without Homebrew):** Download from [caddyserver.com/docs/install](https://caddyserver.com/docs/install)
 
-**Windows:** Download the `.exe` from [caddyserver.com/docs/install](https://caddyserver.com/docs/install) and add it to your PATH. The install page has step-by-step instructions.
+**Windows:** Download the `.exe` from [caddyserver.com/docs/install](https://caddyserver.com/docs/install) and add it to your PATH. The install page has step-by-step instructions. If you are uncertain or lack permissions, consult your domain administrator.
 
 **Linux (Debian/Ubuntu):**
 
@@ -185,7 +196,7 @@ caddy version     # v2.x.x
 caddy run
 ```
 
-4. Open [http://127.0.0.1:1234/](http://127.0.0.1:1234/) in your browser. You should see a blank page — that's expected. `index.html` starts empty; you'll build the map during the workshop. If the server is running and the page loads, you're ready.
+4. Open [http://127.0.0.1:1234/](http://127.0.0.1:1234/) in your browser. You should see NAIP aerial imagery of the Madison area with terrain hillshade — that's `index.html` pre-loaded with the imagery basemap. You're all set for the workshop.
 
 ---
 
@@ -193,12 +204,11 @@ caddy run
 
 Once you've completed setup, you're ready for the session. Here's what we'll build:
 
-- [**Step 1: Verify Setup + Preview Basemaps**](../step-01/): Start your server, open the basemap previews, and choose one
-- [**Step 2: Initialize the Map**](../step-02/): Add MapLibre GL JS to `index.html` and render your chosen basemap
-- [**Step 3: Extract + Style Data**](../step-03/): Query your dataset from OpenStreetMap and style it in Overpass Ultra
-- [**Step 4: Add Data Layer + Popup**](../step-04/): Add your data to the map with a click popup
-- [**Step 5: Publish to GitHub Pages**](../step-05/): Enable Pages on your fork and share a live URL
-- [**Step 6 (Bonus): Swap + Explore**](../step-06/): Swap basemaps, try the other dataset, or run a new Overpass query
+- [**Step 1: Verify Setup + Preview Basemaps**](../step-01/): Open the map, read the initialization code, and choose your basemap
+- [**Step 2: Extract + Style Data**](../step-02/): Query your dataset from OSM and style it in Overpass Ultra
+- [**Step 3: Add Data Layer + Popup**](../step-03/): Add your styled data to the map with a click popup
+- [**Step 4: Publish to GitHub Pages**](../step-04/): Enable Pages on your fork and share a live URL
+- [**Bonus: Swap + Explore**](../step-05/): Swap basemaps, try the other dataset, or run a new Overpass query
 
 ---
 
