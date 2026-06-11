@@ -1,3 +1,4 @@
+{%- set root = "" if page.url == "/" else "../" -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if title %}{{ title }} - {% endif %}Intro to Web Maps</title>
   <link href="https://fonts.googleapis.com/css2?family=Alata&family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../workshop.css">
+  <link rel="stylesheet" href="{{ root }}workshop.css">
 </head>
 <body>
   <div class="workshop-container">
@@ -21,7 +22,7 @@
           <span class="sidebar-event-text">@ SOTMUS 2026</span>
         </div>
         <div class="sidebar-header">
-          <h2><a href="../" class="sidebar-header-link">Intro to Web Maps</a></h2>
+          <h2><a href="{{ root or './' }}" class="sidebar-header-link">Intro to Web Maps</a></h2>
         </div>
         <nav class="sidebar-nav">
           {% for stepItem in workshop.steps %}
@@ -29,7 +30,7 @@
             {% if step == stepItem.number %}
               <a href="./" class="sidebar-item active">
             {% else %}
-              <a href="../{{ stepPath }}/" class="sidebar-item">
+              <a href="{{ root }}{{ stepPath }}/" class="sidebar-item">
             {% endif %}
               <span class="step-number">Step {{ stepItem.number }}</span>
               <span class="step-title">{{ stepItem.title }}</span>
@@ -43,7 +44,7 @@
               {% if step == bonusStep.number %}
                 <a href="./" class="sidebar-item bonus active">
               {% else %}
-                <a href="../{{ bonusPath }}/" class="sidebar-item bonus">
+                <a href="{{ root }}{{ bonusPath }}/" class="sidebar-item bonus">
               {% endif %}
                 <span class="step-number">Step {{ bonusStep.number }}</span>
                 <span class="step-title">{{ bonusStep.title }}</span>
