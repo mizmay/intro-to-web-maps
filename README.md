@@ -4,7 +4,7 @@ The workshop template for **"Introduction to Web Maps"** at SotM US 2026.
 
 You'll build a web map from scratch: choosing a basemap built with OSM and other open source data, extracting and styling OSM data with Overpass Ultra, and publishing on GitHub Pages. No API keys. No proprietary platform.
 
-Fork this repo to create a copy in your own account and follow the workshop instructions [here]([https://mizmay.github.io/intro-to-web-maps](https://mizmay.github.io/intro-to-web-maps/workshop/)).
+Fork this repo to create a copy in your own account and follow the workshop instructions [here](https://mizmay.github.io/intro-to-web-maps/workshop/).
 
 ---
 
